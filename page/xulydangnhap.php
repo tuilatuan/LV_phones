@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($num == 1) {
         $row = mysqli_fetch_assoc($result);
         $userId = $row['accountID'];
+        $role = $row['role'];
         $hash = $row['password'];
         // echo password_verify($password, $hash);
         if (password_verify($password, $hash)) {
@@ -24,14 +25,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['adminloggedin'] = true;
                 $_SESSION['adminname'] = $username;
                 $_SESSION['accountID'] = $userId;
-                header("location: /LV_Phones/admin.php?loginsuccess=true");
+                $_SESSION['role']=$role;
+                header("location: /LV_Phones/admin/index.php");
                 exit();
             } elseif ($row['role'] == 2) {
                 session_start();
                 $_SESSION['staffloggedin'] = true;
                 $_SESSION['staffname'] = $username;
                 $_SESSION['accountID'] = $userId;
-                header("location: /LV_Phones/nhanvien.php?loginsuccess=true");
+                $_SESSION['role']=$role;
+                header("location: /LV_Phones/admin/index.php");
                 exit();
             } else {
                 header("location: /LV_Phones/index.php?loginsuccess=false");

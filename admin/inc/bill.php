@@ -1,28 +1,4 @@
-<header class="main-content-header ">
-    <div>
-        <label class="button-hiden" for="menu-toggle">
-            <i class="fa-solid fa-bars"></i>
-        </label>
-    </div>
-    <div>
-        <a href="" class="main-content_link ">
-            <i class="fa-solid fa-chart-simple"></i>
-            <span>Hóa đơn</span>
-        </a>
-    </div>
-    <div class="main-content-header-avartar">
-        <div>
-            <img src="./assets/img/img1.jpg" alt="">
-        </div>
-        <div class="main-content-header-avartar-info">
-            <div>
-                <h4>ADMIN</h4>
-            </div>
-        </div>
-    </div>
-</header>
 <main>
-
     <div class="table-warpper">
         <div class="table-title">
             <div class="table-title-left">
@@ -46,7 +22,6 @@
         <!-- <div class="alert">
                     <span class="alert-text">Bạn không có đơn hàng nào!</span>
                 </div> -->
-
         <table class="table-content">
             <thead class="table-thead">
                 <tr>
@@ -61,7 +36,7 @@
                 </tr>
             </thead>
             <?php
-            
+
             $string = "SELECT * FROM bill ";
             $query = mysqli_query($con, $string);
             $count = 0;
@@ -111,12 +86,9 @@
                             </th>
                         </tr>
                     </tbody>
-
-
                 ";
             }
             ?>
-
         </table>
     </div>
     <div class="show-product">

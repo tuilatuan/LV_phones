@@ -1,26 +1,3 @@
-<header class="main-content-header ">
-    <div>
-        <label class="button-hiden" for="menu-toggle">
-            <i class="fa-solid fa-bars"></i>
-        </label>
-    </div>
-    <div>
-        <a href="" class="main-content_link ">
-            <i class="fa-solid fa-house"></i>
-            <span>Trang Chủ</span>
-        </a>
-    </div>
-    <div class="main-content-header-avartar">
-        <div>
-            <img src="./assets/img/img1.jpg" alt="">
-        </div>
-        <div class="main-content-header-avartar-info">
-            <div>
-                <h4>ADMIN</h4>
-            </div>
-        </div>
-    </div>
-</header>
 <main>
     <div class="analytics">
         <div class="analytic">

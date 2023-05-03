@@ -1,27 +1,3 @@
-<header class="main-content-header ">
-    <div>
-        <label class="button-hiden" for="menu-toggle">
-            <i class="fa-solid fa-bars"></i>
-        </label>
-    </div>
-    <div>
-        <a href="" class="main-content_link ">
-            <i class="fa-sharp fa-solid fa-folder"></i>
-            <span>Danh mục sản phẩm</span>
-        </a>
-    </div>
-    <div class="main-content-header-avartar">
-        <div>
-            <img src="./assets/img/img1.jpg" alt="">
-        </div>
-        <div class="main-content-header-avartar-info">
-            <div>
-                <h4>ADMIN</h4>
-            </div>
-        </div>
-    </div>
-</header>
-
 <main>
     <div class="product-info">
         <form action="pages/_cateHandle.php" method="POST" class="product-info-left">
@@ -108,35 +84,34 @@
         <label for="edit-toggle">
         </label>
     </div>
-        <div class="modal-dialog" id="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="updateCat2">ID Danh mục: <b id='idcate'>1</b></h5>
-                </div>
-                <div class="modal-body">
-                    <form action="pages/_cateHandle.php" method="post">
-                        <div class="text-left">
-                            <b><label for="name">Tên</label></b>
-                            <input class="form-control" id="namecatefr" name="namecatefr" value="" type="text" required>
-                        </div>
-                        <br>
-                        <input type="hidden" id="catID" name="catID" value="">
-                        <button type="submit" class="btn btn-success" name="updateCategory">Cập nhật</button>
-                    </form>
-                </div>
+    <div class="modal-dialog" id="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateCat2">ID Danh mục: <b id='idcate'>1</b></h5>
+            </div>
+            <div class="modal-body">
+                <form action="pages/_cateHandle.php" method="post">
+                    <div class="text-left">
+                        <b><label for="name">Tên</label></b>
+                        <input class="form-control" id="namecatefr" name="namecatefr" value="" type="text" required>
+                    </div>
+                    <br>
+                    <input type="hidden" id="catID" name="catID" value="">
+                    <button type="submit" class="btn btn-success" name="updateCategory">Cập nhật</button>
+                </form>
             </div>
         </div>
-    
+    </div>
+
 </main>
 <script>
-    function updateCate(cateID){
-        var cur ='#catename'+cateID;
-        var data =cateID;
-        document.querySelector('#catID').value=data;
-        document.querySelector('#idcate').innerHTML=data
-        var p=document.querySelector(cur).innerHTML;
+    function updateCate(cateID) {
+        var cur = '#catename' + cateID;
+        var data = cateID;
+        document.querySelector('#catID').value = data;
+        document.querySelector('#idcate').innerHTML = data
+        var p = document.querySelector(cur).innerHTML;
         document.querySelector('#namecatefr').value = p
     }
     updateCate()
-    
 </script>

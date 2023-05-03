@@ -1,29 +1,6 @@
-<header class="main-content-header ">
-    <div>
-        <label class="button-hiden" for="menu-toggle">
-            <i class="fa-solid fa-bars"></i>
-        </label>
-    </div>
-    <div>
-        <a href="" class="main-content_link ">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span>Sản phẩm</span>
-        </a>
-    </div>
-    <div class="main-content-header-avartar">
-        <div>
-            <img src="/assets/img/img1.jpg" alt="">
-        </div>
-        <div class="main-content-header-avartar-info">
-            <div>
-                <h4>ADMIN</h4>
-            </div>
-        </div>
-    </div>
-</header>
 <main>
     <div class="product-info">
-        <form action="pages/_productHandle.php" method="POST" enctype="multipart/form-data" class="product-info-left" style="height: 560px !important;">
+        <form action="pages/_productHandle.php" method="POST" enctype="multipart/form-data" class="product-info-left" style="height: 630px !important;">
             <div class="product-info-left-header">
                 Thêm Sản Phẩm Mới
             </div>
@@ -74,7 +51,7 @@
                 </div>
             </div>
             <div class="product-info-left-footer">
-                <button type="submit" class="btn-main btn-block btn" name="addPro" style="width: auto !important;">Thêm</button>
+                <button type="submit" class="btn-main btn-block btn" name="addPro" style="width: auto !important;margin-top: -20px;">Thêm</button>
             </div>
         </form>
         <div class="product-info-right">
@@ -99,15 +76,18 @@
                         $productPrice = $row['productPrice'];
                         $productImage = $row['productImage'];
                         $productDetail = $row['productDetail'];
+                        $productQuantity = $row['productQuantity'];
                         echo "
                                 <tbody>
                                 <tr class='table-product-info-body'>
                                     <td class='text-center'><b>$productID</b></td>
                                     <td><img src='../images/$productImage' alt='image for this Category' width='150px' height='150px'></td>
-                                    <td>
+                                    <td class='detail-product'>
                                         <p>Tên: <b>$productName</b></p>
-                                        <p>Gia: <b class='truncate'>$productPrice
+                                        <p>Giá: <b class='truncate'>$productPrice
                                             </b></p>
+                                            <p>Số lượng: <b>$productQuantity</b></p>
+                                            <p>Danh mục: <b>$productDetail</b></p>
                                     </td>
                                     <td class='text-center'>
                                         <div class='action' style='width:112px'>

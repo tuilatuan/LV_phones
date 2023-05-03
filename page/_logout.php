@@ -1,6 +1,8 @@
 <?php
 session_start();
 echo "Tạm biệt bạn tôi....";
+unset($_SESSION["adminloggedin"]);
+unset($_SESSION["staffloggedin  "]);
 unset($_SESSION["loggedin"]);
 unset($_SESSION["username"]);
 unset($_SESSION["accountID"]);
