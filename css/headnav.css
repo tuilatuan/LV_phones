@@ -1,0 +1,56 @@
+.content{
+    width: 80%;
+    margin: 0 auto;
+}
+.content-title{
+    width: 100%;
+    margin: 20px 0px;
+    font-size: 1.6rem;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #333333;
+}
+.content-title-text{
+    margin-left: 50px;
+    width: 70%;
+}
+.content-title-text li{
+    margin: 20px 0;
+}
+
+/* News */
+.form{
+    width: 100%;
+    display: flex;
+    margin: 20px 0;
+}
+.left{
+    width: 50%;
+    margin-right: 20px;
+    padding-left: 8px;
+}
+input[type="text"]{
+    width: 33.75%;
+}
+input[type="submit"]{
+    border-radius: 5px;
+    width: 506px;
+    height: 40px;
+}
+form>.note{
+    width: 505px;
+    height: 240px;
+}
+.right{
+    width: 50%;
+    margin: 8px auto;
+    height: auto;
+}
+.right-contact{
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+.right-contact_header{
+    font-size: 30px;
+    padding-bottom: 7px;
+}
