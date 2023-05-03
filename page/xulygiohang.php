@@ -41,16 +41,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 window.history.back(1);
             </script>";
     }
-    if (isset($_POST['add'])) {
-        $productId = $_POST['productId'];
-        $str = "SELECT cartQuantity FROM cart WHERE productID = $productId";
-        $query = mysqli_query($con, $str);
-        $row = mysqli_fetch_row($query);
-        echo $row;
-        // $quan = $_POST['quantity'];
-        // $updatesql = "UPDATE cart SET cartQuantity='$quan' WHERE productID='$productId' AND accountID = '$userId'";
-        // $updateresult = mysqli_query($con, $updatesql);
-    }
+    // if (isset($_POST['add'])) {
+    //     $productId = $_POST['productId'];
+    //     $str = "SELECT cartQuantity FROM cart WHERE productID = $productId";
+    //     $query = mysqli_query($con, $str);
+    //     $row = mysqli_fetch_row($query);
+    //     echo $row;
+    // $quan = $_POST['quantity'];
+    // $updatesql = "UPDATE cart SET cartQuantity='$quan' WHERE productID='$productId' AND accountID = '$userId'";
+    // $updateresult = mysqli_query($con, $updatesql);
+    // }
     if (isset($_POST['payEnd'])) {
         echo $password = $_POST['inputPassword'];
         echo $totalPrice = $_POST['totalPrice'];
@@ -60,9 +60,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = mysqli_query($con, $sql);
         $num = mysqli_fetch_assoc($result);
         if (password_verify($password, $num['password'])) {
-            $strIn = "INSERT INTO bill (accountID,address,totalProduct,totalPrice) VALUES ($userId,'$address',$totalQuan,$totalPrice)";
-            $result = mysqli_query($con, $strIn);
+            $strbill = "INSERT INTO bill (accountID,address,totalProduct,totalPrice) VALUES ($userId,'$address',$totalQuan,$totalPrice)";
+            $result = mysqli_query($con, $strbill);
+            $billID = $con ->insert_id;
             if ($result) {
+                $str = "SELECT * FROM cart WHERE accountID = '$userId'";
+                $queryy = mysqli_query($con, $str);
+                while($row = mysqli_fetch_array($queryy)){
+                    $productId = $row['productID'];
+                    $cartqty = $row['cartQuantity'];
+                    $str_billdetail= "INSERT INTO `billdetails`(`productID`, `productQuantity`, `billID`) VALUES (' $productId','$cartqty','$billID')";
+                    $query = mysqli_query($con,$str_billdetail);
+                }
                 $delete = "DELETE FROM cart WHERE accountID = $userId";
                 $query = mysqli_query($con, $delete);
                 header("location: /LV_Phones/index.php?paysuccess=true");

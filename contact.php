@@ -30,11 +30,10 @@
     <div class="container">
         <div class="form">
             <div class="left">
-                <form action="">
-                    <input type="text" placeholder="Họ tên">
-                    <input type="text" placeholder="Email"><br />
-                    <input type="text" class="note" placeholder="Nhập vào nội dung"><br />
-                    <input type="submit" class="sbmbtn" value="Gửi yêu cầu">
+                <form action="page/xulyfeedback.php" method="post">
+                    <input type="text" name="email" placeholder="Email"><br />
+                    <input type="text" class="note" name="content" placeholder="Nhập vào nội dung"><br />
+                    <input type="submit" class="sbmbtn" name="btnsub" value="Gửi yêu cầu">
                 </form>
             </div>
             <div class="right">

@@ -58,8 +58,7 @@
                                 <form action="page/xulygiohang.php" method="POST" onsubmit="return confirm('ban co muon xoa het')">
                                     <button name="removeAll" class="btn btn-sm btn-outline-danger">Xóa Tất
                                         Cả</button>
-                                    <input type="hidden" name="userId" value="<?php $userId = $_SESSION['accountID'];
-                                                                                echo $userId ?>">
+                                    <input type="hidden" name="userId" value="<?php echo $userId ?>">
                                 </form>
                             </div>
                         </div>
@@ -159,12 +158,13 @@
                 input.value = 1;
             }
         }
+
         function updateCart(productId) {
             $.ajax({
                 url: 'page/xulygiohang.php',
                 type: 'POST',
                 data: $("#quan" + productId).serialize(),
-                success: function (res) {
+                success: function(res) {
                     location.reload();
 
                 }
@@ -172,15 +172,17 @@
             });
 
         }
-        function delitem(){
-           if( confirm('ban co muon xoa?')){
-            return true;
-           }else{
-            return false;
-           }
+
+        function delitem() {
+            if (confirm('ban co muon xoa?')) {
+                return true;
+            } else {
+                return false;
+            }
         }
     </script>
 </body>
 <script src="js/lib/flickity.min.js"></script>
 <script src="js/main.js"></script>
+
 </html>

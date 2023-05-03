@@ -162,8 +162,3 @@
         </div>
     </div>
 </main>
-<script>
-    function edituser(){
-        
-    }
-</script>

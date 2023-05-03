@@ -13,8 +13,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <script src="js/lib/jquery.min.js"></script>
+    <script src="js/lib/popper.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/jquery-3.1.1.min.js"></script>
 
-    <title>Document</title>
+    <title>Profile</title>
 </head>
 
 <body>
@@ -62,10 +66,10 @@
                 </form>
                 <div class='col-md-4'>
                     <div class='p-3 py-5'>
-                        <div class='d-flex justify-content-between align-items-center experience'><span>Thông tin tài khoản</span><span class='border px-3 p-1 add-experience'><i class='fa fa-plus'></i>&nbsp;Thêm thông tin</span></div><br>
+                        <div class='d-flex justify-content-between align-items-center experience'><span>Thông tin tài khoản</span></div><br>
                         <div class='col-md-12'><label class='labels'>Tài khoản</label><input type='text' name='username' class='form-control' placeholder='Nhập vào tài khoản' value='$username'></div> <br>
-                        <div class='col-md-12'><label class='labels'>Mật khẩu</label><input type='text' class='form-control' placeholder='Nhập vào mật khẩu' value=''></div>
-                        <button type='button' class='col-md-6 btn btn-info mt-1' data-target='#passModal' data-toggle='modal'>Đổi mật khẩu</button>
+                        <div class='col-md-12'><label class='labels'>Mật khẩu</label><button type='button' class='col-md-6 btn btn-info mt-1 form-control' data-target='#passModal' data-toggle='modal'>Đổi mật khẩu</button></div>
+                        
                     </div>
                 </div>";
                 };
@@ -73,11 +77,11 @@
                 ?>
 
             </div>
-        
+
     </div>
 
     <?php
-  
+
     include('inc/footer.php');
     ?>
 </body>

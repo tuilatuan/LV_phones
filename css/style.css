@@ -382,6 +382,13 @@ table {
   width: 800px;
   height: 300px;
 }
+#banner .banner-carousel .item{
+  max-width: 100%;
+  max-height: 100%;
+}
+#banner .banner-carousel .item img{
+  width: 100%;
+}
 #banner .banner-carousel .flickity-page-dots {
   display: none;
 }
@@ -662,9 +669,7 @@ table {
 
 /* View Product */
 .img{
-  padding: 16px;
-  max-width: 422px;
-  max-height: 422px;
+  max-width: 325px;
 }
 .content{
   margin:24px 24px;
@@ -734,4 +739,8 @@ strong>span{
 }
 .policy-item i{
   margin-right: 10px;
+}
+/* ------------------------------modal------------------------- */
+.modal-header {
+  background:var(--green-cl);
 }
