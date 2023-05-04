@@ -23,7 +23,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<title>Document</title>
+	<title>Bill</title>
 </head>
 
 <body>
@@ -89,20 +89,14 @@
 
 		<!-- Chi tiết hóa đơn -->
 		<?php
-		$str_billdetail = "SELECT * FROM `billdetails` WHERE 	billID= $billID";
-		$query = mysqli_query($con, $str_billdetail);
-		while ($row_billdetail = mysqli_fetch_array($query)) {
-			$detailID = $row_billdetail['billDetailsID'];
-			$Proid = $row_billdetail['productID'];
-			$ProQty = $row_billdetail['productQuantity'];
+		$str_bill = "SELECT * FROM `bill` WHERE accountID= $userId";
+		$query = mysqli_query($con, $str);
+		$query = mysqli_query($con, $str_bill);
+		while ($row_bill = mysqli_fetch_array($query)) {
+			$billID = $row_bill['billID'];
 			// $billID = $row_billdetail['billID'];
-			$str_Pro = "SELECT * FROM product WHERE productID= $Proid";
-			$query_Pro = mysqli_query($con, $str_Pro);
-			$row = mysqli_fetch_assoc($query_Pro);
-			$proName = $row['productName'];
-			$img = $row['productImage'];
-			$proPri = $row['productPrice'];
-		 ?>
+
+		?>
 			<div class="modal fade " id="bill-detail<?php echo $billID ?>">
 				<div class="bill-detail-modal panel-body ">
 					<div class="container bill-detail-content table-responsive">
@@ -122,6 +116,17 @@
 								</tr>
 							</thead>
 							<?php
+							$str_billdetail = "SELECT * FROM `billdetails` WHERE billID=$billID";
+							$query_billdetail = mysqli_query($con,$str_billdetail);
+							while($row_billdetail = mysqli_fetch_assoc($query_billdetail)){
+								$Proid = $row_billdetail['productID'];
+								$ProQty = $row_billdetail['productQuantity'];
+							$str_Pro = "SELECT * FROM product WHERE productID= $Proid";
+							$query_Pro = mysqli_query($con, $str_Pro);
+							$row = mysqli_fetch_assoc($query_Pro);
+							$proName = $row['productName'];
+							$img = $row['productImage'];
+							$proPri = $row['productPrice'];
 							echo "<tbody>
 							<tr >
 												<td class='text-center'><strong>$billID</strong></td>
@@ -131,7 +136,7 @@
 												<td class='text-center'><strong>$proPri</strong></td>
 											</tr>
 										</tbody>";
-							?>
+							}?>
 						</table>
 
 					</div>

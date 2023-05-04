@@ -53,6 +53,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             <i class='fa-sharp fa-solid fa-caret-down' ></i>
             <div class='accoption'>
             <a class='profile' href='profile.php'> Profile </a>
+            <a class='bill' href='bill.php'> Đơn hàng </a>
             <a class='logout' href='page/_logout.php'> Đăng xuất </a>
             </div>
         </button>";
