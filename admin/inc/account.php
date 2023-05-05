@@ -156,7 +156,7 @@
             </label>
         </div>
         <div class="show-add-users">
-            <form action="pages/_productHandle.php" method="POST" enctype="multipart/form-data" class="show-add-user">
+            <form action="pages/_accountHandle.php" method="POST" enctype="multipart/form-data" class="show-add-user">
                 <div class="product-info-left-header">
                     Thêm Người Dùng
                 </div>
@@ -164,49 +164,46 @@
                     <div class="form-group">
                         <label class="control-label" for="">Tên người dùng:</label>
                         <br>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <input type="text" class="form-control" id="fullname" name="fullname" required>
                     </div>
                     <div class="form-group">
                         <label class=" control-label" for="">Tên:</label>
                         <br>
-                        <input type="text" class="form-control" id="desc" name="desc" required>
+                        <input type="text" class="form-control" id="username" name="username" required>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Email</label>
-                        <input type="email" class="form-control" id="price" name="price" required min="1">
+                        <input type="email" class="form-control" id="email" name="email" required min="1">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Số thoại</label>
-                        <input type="number" class="form-control" id="quantity" name="quantity" required min="1">
+                        <input type="number" class="form-control" id="nphone" name="nphone" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Mật khẩu</label>
+                        <input type="number" class="form-control" id="password" name="password" required min="1">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Phân quyền</label>
                         <br>
-                        <select name="categoryId" id="categoryId" class="custom-select browser-default" required>
+                        <select name="PQ" id="PQ" class="custom-select browser-default" required>
                             <option hidden disabled selected value>---</option>
-                            <?php
-
-                            $string = "SELECT * FROM account ";
-                            $query = mysqli_query($con, $string);
-                            $count = 0;
-                            while ($row = mysqli_fetch_array($query)) {
-                                $role = $row['role'];
-                                echo "<option value='$role'>$role</option>";
-                            } ?>
-
+                            <option value="1">Admin</option>
+                            <option value="2">Staff</option>
+                            <option value="0">User</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="image" class="control-label
                             ">Ảnh</label>
                         <input type="file" name="img" id="img" accept=".jpg" class="form-control" required>
                         <small id="info" class="form-text">
                             Chọn file .jpg
                         </small>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="product-info-left-footer">
-                    <button type="submit" class="btn-main btn-block btn" name="addPro" style="width: auto !important;">Thêm</button>
+                    <button type="submit" class="btn-main btn-block btn" name="addUser" style="width: auto !important;">Thêm</button>
                 </div>
             </form>
         </div>

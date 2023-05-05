@@ -610,15 +610,20 @@ table.table-content tr th {
 
 .modal-dialog1 {
     max-width: 500px;
-    position: relative;
-    top: -180rem;
-    right: -300px;
+    /* position: relative;
+    top: -200rem;
+    right: -300px; */
     z-index: 10;
     display: none;
+    position: fixed;
+    top: 100px;
+left: 715px;
 }
 
 #edit-toggle:checked~.modal-dialog {
     display: flex;
+   
+
 }
 
 
@@ -770,4 +775,5 @@ label {
 .detail-product {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    row-gap: 7px;
 }

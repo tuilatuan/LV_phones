@@ -44,6 +44,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </script>";
         }
     }
+    if (isset($_POST['updatePro'])) {
+        $proID = $_POST['proId'];
+        $name = $_POST['name'];
+        $price = $_POST['price'];
+        $qty = $_POST['quantity'];
+        $cate = $_POST['cateId'];
+        $desc = $_POST['desc'];
+        // echo $cate;
+        $str_edit = "UPDATE `product` SET `categoryID`='$cate',`productName`='$name',`productPrice`='$price',`productQuantity`='$qty',`productDetail`='$desc' WHERE productID = $proID";
+        $query = mysqli_query($con, $str_edit);
+        if ($query) {
+            echo "
+            <script>alert('chuyểnthành công');
+            window.location=document.referrer;
+        </script>
+            ";
+        } else {
+            echo "
+        <script>alert('không thành công');
+        window.location=document.referrer;
+    </script>
+        ";
+        }
+    }
     if (isset($_POST['delPro'])) {
         $proID = $_POST['proId'];
         // echo $proID;

@@ -68,7 +68,11 @@
 										echo "<tr>
 									<td class='text-center'>$billID</td>
 									<td class='text-center'></td>
-									<td class='text-center'>$address</td>
+									<td class='text-center' style='display: -webkit-box;
+									-webkit-line-clamp: 1;
+									-webkit-box-orient: vertical;
+									text-overflow: ellipsis;
+									overflow: hidden;'>$address</td>
 									<td class='text-center'>$totalPro</td>
 									<td class='text-center'>$totalPri</td>
 									<td class='text-center'>$date</td>
@@ -117,17 +121,17 @@
 							</thead>
 							<?php
 							$str_billdetail = "SELECT * FROM `billdetails` WHERE billID=$billID";
-							$query_billdetail = mysqli_query($con,$str_billdetail);
-							while($row_billdetail = mysqli_fetch_assoc($query_billdetail)){
+							$query_billdetail = mysqli_query($con, $str_billdetail);
+							while ($row_billdetail = mysqli_fetch_assoc($query_billdetail)) {
 								$Proid = $row_billdetail['productID'];
 								$ProQty = $row_billdetail['productQuantity'];
-							$str_Pro = "SELECT * FROM product WHERE productID= $Proid";
-							$query_Pro = mysqli_query($con, $str_Pro);
-							$row = mysqli_fetch_assoc($query_Pro);
-							$proName = $row['productName'];
-							$img = $row['productImage'];
-							$proPri = $row['productPrice'];
-							echo "<tbody>
+								$str_Pro = "SELECT * FROM product WHERE productID= $Proid";
+								$query_Pro = mysqli_query($con, $str_Pro);
+								$row = mysqli_fetch_assoc($query_Pro);
+								$proName = $row['productName'];
+								$img = $row['productImage'];
+								$proPri = $row['productPrice'];
+								echo "<tbody>
 							<tr >
 												<td class='text-center'><strong>$billID</strong></td>
 												<td class='text-center'><img src='images/$img' alt='' style='max-width:60px;'></td>
@@ -136,7 +140,7 @@
 												<td class='text-center'><strong>$proPri</strong></td>
 											</tr>
 										</tbody>";
-							}?>
+							} ?>
 						</table>
 
 					</div>
