@@ -25,7 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['adminloggedin'] = true;
                 $_SESSION['adminname'] = $username;
                 $_SESSION['accountID'] = $userId;
-                $_SESSION['role']=$role;
+                $_SESSION['roleadmin'] = $role;
+                
                 header("location: /LV_Phones/admin/index.php");
                 exit();
             } elseif ($row['role'] == 2) {
@@ -33,7 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['staffloggedin'] = true;
                 $_SESSION['staffname'] = $username;
                 $_SESSION['accountID'] = $userId;
-                $_SESSION['role']=$role;
+                $_SESSION['rolestaff'] = $role;
+                
                 header("location: /LV_Phones/admin/index.php");
                 exit();
             } else {

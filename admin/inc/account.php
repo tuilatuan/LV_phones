@@ -1,6 +1,4 @@
-
 <main>
-
     <div class="">
         <div class="">
             <div class='add-user'>
@@ -37,29 +35,51 @@
                             $count++;
                             echo "  
                                 <tbody style= background-color: #fff;>
-                                <tr>
-                                    <td>$count</td>
+                                <tr style='text-align: center;'>
+                                    <td class='acc$accountID'>$accountID  </td>
                                     <td><img src=./assets/img/img1.jpg alt=image for this user onError=this.src ='/OnlinePizzaDelivery/img/profilePic.jpg' width=100px height=100px></td>
-                                    <td>$username</td>
+                                    <td class='username$accountID'>$username</td>
                                     <td>
-                                        <p>$fullname</p>
+                                        <p class='fullname$accountID'>$fullname</p>
                                     </td>
-                                    <td>$email</td>
-                                    <td>$phone</td>
-                                    <td>$role</td>
+                                    <td class='email$accountID'>$email</td>
+                                    <td class='phone$accountID'>$phone</td>
+                                    <td class='role$accountID'>$role</td>
                                     <td class=text-center>
                                         <div class=display style=width:112px>
-                                            <label for=show-toggle class= 'btn btn-active'  type=button>Sửa</label>
-                                            <form action='pages/_accountHandle.php' method='POST' onsubmit='return delitem()'>
-                                            <button style='margin-bottom: .5rem;
-                                            margin-left: .5rem;' type='submit' name='DelAcc' class='btn  btn-danger'>Xóa</button>
-                                            <input type='hidden' name='AccId' value='$accountID'>
-                                        </form>
-                                        </div>
-                                        
+                                            <label for=show-toggle class= 'btn btn-active'  type='button' onclick='updateAcc($accountID)'>Sửa</label>";
+
+                            if ($managerole  == 2) {
+                                echo "
+                                        <form action='pages/_accountHandle.php' method='POST' onsubmit='return delitem()'>
+                                        <button style='margin-bottom: .5rem; margin-left: .5rem; pointer-events: none;opacity: 0.6;' type='submit' name='DelAcc' class='btn  btn-danger' disabled >Xóa</button>
+                                        <input type='hidden' name='AccId' value='$accountID'>
+                                    </form>
+                                    </div>
                                     </td>
-                                </tr>
-                                </tbody>";
+                                    </tr>
+                                    </tbody>";
+                            } else {
+                                if ($manageId == $accountID) {
+                                    echo "
+                                        <button style='margin-bottom: .5rem; margin-left: .5rem; pointer-events: none;opacity: 0.6;' type='submit' name='DelAcc' class='btn  btn-danger' disabled >Xóa</button>
+                                    </div>
+                                    </td>
+                                    </tr>
+                                    </tbody>";
+                                } else {
+                                    echo "
+                                        <form action='pages/_accountHandle.php' method='POST' onsubmit='return delitem()'>
+                                        <button style='margin-bottom: .5rem;
+                                        margin-left: .5rem;' type='submit' name='DelAcc' class='btn  btn-danger'  >Xóa</button>
+                                        <input type='hidden' name='AccId' value='$accountID'>
+                                    </form>
+                                    </div>
+                                    </td>
+                                    </tr>
+                                    </tbody>";
+                                }
+                            }
                         }
                         ?>
 
@@ -77,7 +97,7 @@
             <div class="" role="document">
                 <div class="modal-content">
                     <div class="modal-header add-user-header">
-                        <h5 class="modal-title" id="editUser1">ID Tài khoản: <b>1</b></h5>
+                        <h5 class="modal-title" id="editUser1">ID Tài khoản: <b id="accid">1</b></h5>
                     </div>
                     <div class="modal-body">
 
@@ -100,51 +120,53 @@
                                 </form>
                             </div>
                         </div>
+                        <form action="pages/_accountHandle.php" method="POST">
+                            <div class="form-user">
 
-
-                        <div class="form-user">
-                            <div class="form-user-left">
-                                <div class="form-group">
-                                    <b><label for="username">Tên tài khoản</label></b>
-                                    <input class="form-control" id="username" name="username" value="admin" type="text" disabled>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <b><label for="firstName">Họ:</label></b>
-                                        <input type="text" class="form-control" id="firstName" name="firstName" value="admin" required>
+                                <div class="form-user-left">
+                                    <div class="form-group">
+                                        <b><label for="username">Tên tài khoản</label></b>
+                                        <input class="form-control" id="username" name="username" value="" type="text"  required>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <b><label for="lastName">Tên:</label></b>
-                                        <input type="text" class="form-control" id="lastName" name="lastName" value="admin" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-user-right">
-                                <div class="form-group ml-1">
-                                    <b><label for="email">Email:</label></b>
-                                    <input type="email" class="form-control" id="email" name="email" value="admin@gmail.com" required>
-                                </div>
-                                <div class="form-group ml-1">
-                                    <div class="form-group ">
-                                        <b><label for="phone">Số điện thoại:</label></b>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                            </div>
-                                            <input type="tel" class="form-control" id="phone" name="phone" value="1111111111" required pattern="[0-9]{10}" maxlength="10">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <b><label for="fullname">Tên người dùng</label></b>
+                                            <input type="text" class="form-control" id="fullname" name="fullname" value="" required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <b><label for="password">Mật khẩu</label></b>
+                                            <input type="text" class="form-control" id="password" name="password" value="" placeholder="không đổi đừng nhập (*_*!)??">
                                         </div>
                                     </div>
-                                    <div class="form-group ">
-                                        <b><label for="userType">Phân quyền:</label></b>
-                                        <select name="userType" id="userType" class="custom-select browser-default" required>
-                                            <option value="0">User</option>
-                                            <option value="1" selected>Admin</option>
-                                        </select>
+                                </div>
+                                <div class="form-user-right">
+                                    <div class="form-group ml-1">
+                                        <b><label for="email">Email:</label></b>
+                                        <input type="email" class="form-control" id="email" name="email" pattern="^\S+@\S+\.\S+" value="" required>
+                                    </div>
+                                    <div class="form-group ml-1">
+                                        <div class="form-group ">
+                                            <b><label for="phone">Số điện thoại:</label></b>
+                                            <div class="input-group mb-3">
+                                                <!-- <div class="input-group-prepend">
+                                            </div> -->
+                                                <input type="tel" class="form-control" id="phone" name="phone" value="" required pattern="^0(\d{9}|9\d{8})$" maxlength="10">
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <b><label for="userType">Phân quyền:</label></b>
+                                            <select name="PQ" id="PQ" class="custom-select browser-default" required>
+                                                <option hidden disabled selected value>---</option>
+                                                <option value="1">Admin</option>
+                                                <option value="2">Staff</option>
+                                                <option value="0">User</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <input type="hidden" id="userId" name="userId" value="1">
-                        <button type="submit" name="editUser" class="btn btn-success" style="margin-left: 12rem;">Cập nhật</button>
+                            <input type="hidden" id="userID" name="userID" value="">
+                            <button type="submit" name="editUser" class="btn btn-success" style="margin-left: 12rem;">Cập nhật</button>
                         </form>
                     </div>
                 </div>
@@ -167,21 +189,25 @@
                         <input type="text" class="form-control" id="fullname" name="fullname" required>
                     </div>
                     <div class="form-group">
-                        <label class=" control-label" for="">Tên:</label>
+                        <label class=" control-label" for="">Tên đăng nhập:</label>
                         <br>
-                        <input type="text" class="form-control" id="username" name="username" required>
+                        <input type="text" class="form-control" id="username" name="username" pattern="\S+" required>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required min="1">
+                        <input type="email" class="form-control" id="email" name="email" pattern="^\S+@\S+\.\S+" required min="1">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Số thoại</label>
-                        <input type="number" class="form-control" id="nphone" name="nphone" required min="1">
+                        <input type="number" class="form-control" id="nphone" name="nphone" pattern="^0(\d{9}|9\d{8})$" required min="1">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Mật khẩu</label>
-                        <input type="number" class="form-control" id="password" name="password" required min="1">
+                        <input type="number" class="form-control" id="password" name="password" required min="3">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Nhập lại nật khẩu</label>
+                        <input type="number" class="form-control" id="repassword" name="repassword" required min="3">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Phân quyền</label>
@@ -208,3 +234,28 @@
             </form>
         </div>
 </main>
+<script>
+    function updateAcc(id) {
+        var accid = '.acc' + id;
+        var accname = '.username' + id
+        var accemail = '.email' + id
+        var phone = '.phone' + id
+        var role = '.role' + id
+        var accfullname = '.fullname' + id
+        document.querySelector('#accid').innerHTML = id;
+        var accname = document.querySelector(accname).innerHTML;
+        var accemail = document.querySelector(accemail).innerHTML;
+        var accphone = document.querySelector(phone).innerHTML;
+        var accrole = document.querySelector(role).innerHTML;
+        var accfullname = document.querySelector(accfullname).innerHTML;
+        document.querySelector('#userID').value = id;
+        document.querySelector('#username').value = accname;
+        document.querySelector('#fullname').value = accfullname;
+        document.querySelector('#email').value = accemail;
+        document.querySelector('#phone').value = accphone;
+        document.querySelector('#PQ').value = accrole;
+        console.log(accname + '/' + accemail + '/' + accphone + '/' + accrole + '/' + accfullname + '/' + "");
+
+    }
+    // updatePro();
+</script>

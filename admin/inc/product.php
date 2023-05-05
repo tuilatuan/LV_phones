@@ -26,7 +26,7 @@
                 <div class="form-group">
                     <label class="control-label">Danh mục</label>
                     <br>
-                    <select name="categoryId" id="categoryId" class="custom-select browser-default" required>
+                    <select name="categoryId" id="categoryId" class="custom-select browser-default"   required>
                         <option hidden disabled selected value>---</option>
                         <?php
 
@@ -155,12 +155,12 @@
                     </div>
                     <div class="form-group">
                         <b><label for="quantity">Số lượng</label></b>
-                        <input class="form-control" id="quantitypro" name="quantity" value="" type="number" min="1" required>
+                        <input class="form-control" id="quantitypro" name="quantity" value="" type="number" min="0" required>
                     </div>
                     <div class="form-group">
                         <b><label for="catId">Loại sản phẩm</label></b>
                         <!-- <input class="form-control" id="catId" name="catId" value="" type="number" min="1" required> -->
-                        <select name="cateId" id="cateId" class="custom-select browser-default"  required>
+                        <select name="cateId" id="cateId" class="custom-select browser-default"    "  required>
                         <option hidden disabled selected value>---</option>
                         <?php
 

@@ -5,9 +5,11 @@ if ((isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) ||
     if (isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) {
         $manageId = $_SESSION['accountID'];
         $managename = $_SESSION['adminname'];
+        $managerole = $_SESSION['roleadmin'];
     } else {
         $manageId = $_SESSION['accountID'];
         $managename = $_SESSION['staffname'];
+        $managerole = $_SESSION['rolestaff'];
     }
 } else {
     $staffloggedin = false;
