@@ -42,6 +42,7 @@
             $count = 0;
             while ($row = mysqli_fetch_array($query)) {
                 $accountID = $row['accountID'];
+                $billID = $row['billID'];
                 $address = $row['address'];
                 $totalProduct = $row['totalProduct'];
                 $totalPrice = $row['totalPrice'];
@@ -57,25 +58,25 @@
                             <th>$totalPrice</th>
                             <th>$billDate</th>
                             <th><select class='custom-select' name='status' id='status'>
-                                    <option value=''>
+                                    <option value='0'>
                                         Đã đặt hàng
                                     </option>
-                                    <option value=''>
+                                    <option value='1'>
                                         Xác nhận đơn hàng.
                                     </option>
-                                    <option value=''>
+                                    <option value='2'>
                                         Đang chuẩn bị đơn hàng.
                                     </option>
-                                    <option value=''>
+                                    <option value='3'>
                                         Đang giao hàng.
                                     </option>
-                                    <option value=''>
+                                    <option value='4'>
                                         Đã giao hàng.
                                     </option>
-                                    <option value=''>
+                                    <option value='5'>
                                         Đơn hàng bị từ chối.
                                     </option>
-                                    <option value=''>
+                                    <option value='6'>
                                         Đơn hàng bị hủy.
                                     </option>
                                 </select></th>
@@ -118,7 +119,7 @@
                                 <div class="display">
                                     <div class="product-textt">Hinh Sản phẩm
                                     </div>
-                                    <div class="product-qualityy">
+                                    <div class="product-qualityy" > 
                                         x1
                                     </div>
                                 </div>

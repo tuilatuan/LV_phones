@@ -26,7 +26,7 @@
                 <div class="form-group">
                     <label class="control-label">Danh mục</label>
                     <br>
-                    <select name="categoryId" id="categoryId" class="custom-select browser-default" required>
+                    <select name="categoryId" id="categoryId" class="custom-select browser-default"   required>
                         <option hidden disabled selected value>---</option>
                         <?php
 
@@ -67,7 +67,7 @@
                     </thead>
                     <?php
 
-                    $string = "SELECT * FROM product ";
+                    $string = "SELECT * FROM `product` ORDER BY `product`.`productName` ASC ";
                     $query = mysqli_query($con, $string);
                     while ($row = mysqli_fetch_array($query)) {
                         $productID = $row['productID'];
@@ -80,22 +80,24 @@
                         echo "
                                 <tbody>
                                 <tr class='table-product-info-body'>
-                                    <td class='text-center'><b>$productID</b></td>
+                                    <td class='text-center' ><b id='proid$productID'>$productID</b></td>
                                     <td><img src='../images/$productImage' alt='image for this Category' width='150px' height='150px'></td>
                                     <td class='detail-product'>
-                                        <p>Tên: <b>$productName</b></p>
-                                        <p>Giá: <b class='truncate'>$productPrice
-                                            </b></p>
-                                            <p>Số lượng: <b>$productQuantity</b></p>
-                                            <p>Danh mục: <b>$productDetail</b></p>
+                                        <p>Tên: <b  id='proname$productID'>$productName</b></p>
+                                        <p>Giá: <b class='truncate' id='proPri$productID'>$productPrice</b></p>
+                                            <p>Số lượng: <b id='proQty$productID'>$productQuantity</b></p>
+                                            <p>Mô tả: <b id='proDetail$productID'>$productDetail</b></p>
+                                            <p      >Mã loại: <b id='catepro$productID'>$categoryID</b></p>
+
                                     </td>
                                     <td class='text-center'>
                                         <div class='action' style='width:112px'>
                                             <div>
 
-                                                <label class='btn btn-active edit-text' for='edit-toggle'>
-                                                    Sửa
-                                                </label>
+                                            <label class='btn btn-active edit-text' for='edit-toggle' onclick='updatePro($productID)'>
+                                            <input type='hidden' id='proreIn' name='catereIn'  value='$productID'>
+                                                Sửa
+                                            </label>
                                             </div>
                                                 
                                             <form action='pages/_productHandle.php' method='POST' onsubmit='return delitem()'>
@@ -123,10 +125,10 @@
     <div class="modal-dialog1" id="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="updateCat2">ID Sản Phẩm: <b>1</b></h5>
+                <h5 class="modal-title" id="updateCat2">ID Sản Phẩm: <b id='editproid'>1</b></h5>
             </div>
             <div class="modal-body">
-                <form action="partials/_categoryManage.php" method="post" enctype="multipart/form-data">
+                <form action="pages/_productHandle.php" method="post" enctype="multipart/form-data">
                     <div class="display" style="border-bottom: 2px solid #dee2e6;">
                         <div class="form-group ">
                             <b><label for="image">Ảnh</label></b>
@@ -141,30 +143,76 @@
                         </div>
                     </div>
                 </form>
-                <form action="partials/_categoryManage.php" method="post">
+                <form action="pages/_productHandle.php" method="post">
                     <div class="text-left">
                         <b><label for="name">Tên</label></b>
-                        <input class="form-control" id="name" name="name" value="Iphone" type="text" required>
+                        <input class="form-control" id="namepro" name="name" value="" type="text" required>
                     </div>
                     <br>
                     <div class="form-group">
                         <b><label for="price">Price</label></b>
-                        <input class="form-control" id="price" name="price" value="20" type="number" min="1" required>
+                        <input class="form-control" id="pricepro" name="price" value="" type="number" min="1" required>
                     </div>
-
                     <div class="form-group">
-                        <b><label for="catId">Category Id</label></b>
-                        <input class="form-control" id="catId" name="catId" value="5" type="number" min="1" required>
+                        <b><label for="quantity">Số lượng</label></b>
+                        <input class="form-control" id="quantitypro" name="quantity" value="" type="number" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <b><label for="catId">Loại sản phẩm</label></b>
+                        <!-- <input class="form-control" id="catId" name="catId" value="" type="number" min="1" required> -->
+                        <select name="cateId" id="cateId" class="custom-select browser-default"    "  required>
+                        <option hidden disabled selected value>---</option>
+                        <?php
+
+                        $string = "SELECT * FROM category ";
+                        $query = mysqli_query($con, $string);
+                        $count = 0;
+                        while ($row = mysqli_fetch_array($query)) {
+                            $categoryID = $row['categoryID'];
+                            $categoryName = $row['categoryName'];
+                            echo "<option value='$categoryID'>$categoryName</option>";
+                        } ?>
+
+                    </select>
                     </div>
                     <div class="text-left">
                         <b><label for="desc">Mô tả</label></b>
-                        <textarea class="form-control" id="desc" name="desc" rows="2" required minlength="6">....</textarea>
+                        <textarea class="form-control" id="descpro" name="desc" rows="2" required minlength="6" value=""></textarea>
                     </div>
                     <br>
-                    <input type="hidden" id="catId" name="catId" value="2">
-                    <button type="submit" class="btn btn-success" name="updateCategory">Cập nhật</button>
+                    <input type="hidden" id="proId" name="proId" value="2">
+                    <button type="submit" class="btn btn-success" name="updatePro">Cập nhật</button>
                 </form>
             </div>
         </div>
     </div>
 </main>
+<script>
+    function updatePro(id) {
+        var proid = '#proid' + id;
+        var proname = '#proname' + id
+        var pri = '#proPri' + id
+        var qty = '#proQty' + id
+        var detail = '#proDetail' + id
+        var cateid = '#catepro'+id
+        document.querySelector('#editproid').innerHTML = id;
+        var cate =document.querySelector(cateid).innerHTML;
+        var proidd = document.querySelector(proid).innerHTML;
+        var pronamee = document.querySelector(proname).innerHTML;
+        var prii = document.querySelector(pri).innerHTML;
+        var qtyy = document.querySelector(qty).innerHTML;
+        var detaill = document.querySelector(detail).innerHTML;
+        document.querySelector('#namepro').value = pronamee;
+        document.querySelector('#pricepro').value = prii;
+        document.querySelector('#descpro').value = detaill;
+        document.querySelector('#quantitypro').value = qtyy;
+        document.querySelector('#proId').value = id;
+        $('#cateId').val(cate);        
+
+
+
+        console.log(proidd   + '/' + pronamee + '/' + prii + '/' + qtyy + '/' + detaill +'/' +cate);
+
+    }
+    updatePro();
+</script>

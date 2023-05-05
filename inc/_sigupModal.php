@@ -14,7 +14,7 @@
                         </div>
                         <div class="reg-input-box my-2 row">
                             <span class="details col-4">Tên đăng nhập</span>
-                            <input type="text" class="col-6" id="reg-id" name="reg-id" placeholder="Nhập mã số sinh viên" required>
+                            <input type="text" class="col-6" id="reg-id" name="reg-id" placeholder="Nhập tên đăng nhập" required>
                             <div id="noteid"></div>
                         </div>
                         <div class="reg-input-box my-2 row">
