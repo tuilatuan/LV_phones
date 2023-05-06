@@ -70,7 +70,6 @@
                         $totalPrice = 0;
                         $totalQuan = 0;
                         while ($cartquery = mysqli_fetch_assoc($query)) {
-
                             $productId = $cartquery['productID'];
                             $productName = $cartquery['productName'];
                             $productImage = $cartquery['productImage'];
