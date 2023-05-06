@@ -101,6 +101,18 @@ body {
     width: 100%;
 }
 
+#bill-toggle:checked~.modal-bill {
+    display: block;
+}
+
+#bill-toggle:checked~.overlay {
+    display: block;
+}
+
+#bill-toggle {
+    display: none;
+}
+
 img {
     width: 50%;
     height: auto;
@@ -617,12 +629,12 @@ table.table-content tr th {
     display: none;
     position: fixed;
     top: 100px;
-left: 715px;
+    left: 715px;
 }
 
 #edit-toggle:checked~.modal-dialog {
     display: flex;
-   
+
 
 }
 
@@ -777,3 +789,33 @@ label {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 7px;
 }
+
+.modal-content-header {
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-size {
+    width: 50%;
+    margin: 5px;
+}
+
+.modal-bill {
+    max-width: 500px;
+    position: fixed;
+    z-index: 10;
+    /* display: none; */
+    background-color: #fff;
+    top: 100px;
+    right: 300px;
+    box-shadow: var(--shadow);
+}
+
