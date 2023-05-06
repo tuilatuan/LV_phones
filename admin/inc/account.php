@@ -191,23 +191,23 @@
                     <div class="form-group">
                         <label class=" control-label" for="">Tên đăng nhập:</label>
                         <br>
-                        <input type="text" class="form-control" id="username" name="username" pattern="\S+" required>
+                        <input type="text" class="form-control" id="username" name="username" pattern="^\S+$" required>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" pattern="^\S+@\S+\.\S+" required min="1">
+                        <input type="email" class="form-control" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required min="1">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Số thoại</label>
-                        <input type="number" class="form-control" id="nphone" name="nphone" pattern="^0(\d{9}|9\d{8})$" required min="1">
+                        <input type="number" class="form-control" id="nphone" name="nphone" pattern="0[0-9]{9,10}" required min="1" maxlength="11">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Mật khẩu</label>
-                        <input type="number" class="form-control" id="password" name="password" required min="3">
+                        <input type="password" class="form-control" id="password" name="password" required min="3">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Nhập lại nật khẩu</label>
-                        <input type="number" class="form-control" id="repassword" name="repassword" required min="3">
+                        <input type="password" class="form-control" id="repassword" name="repassword" required min="3">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Phân quyền</label>

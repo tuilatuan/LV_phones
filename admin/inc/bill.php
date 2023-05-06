@@ -5,12 +5,12 @@
                 <span>Hóa Đơn</span>
             </div>
             <div class="table-title-right">
-                <div class="button-print">
+                <!-- <div class="button-print">
                     <a href="">
                         <i class="fa-solid fa-file"></i>
                         <span>In hóa đơn</span>
                     </a>
-                </div>
+                </div> -->
                 <div class="button-resset">
                     <a href="">
                         <i class="fa-solid fa-rotate-right"></i>
@@ -86,9 +86,8 @@
                                 </form>
                                 </th>
                             <th>
-                                <span>
-                                    <img src='assets/img/img1.jpg' alt='' class='img-style'>
-                                </span>
+                                <button id='#bill-detail$billID'  class='btn btn-success'>Chi tiết
+                                </button>
                             </th>
                         </tr>
                     </tbody>
@@ -97,44 +96,10 @@
             ?>
         </table>
     </div>
-    <div class="show-product">
-        <div class="show-product-header">
-            <h5>Sản phẩm (ID hóa đơn: 4)
-            </h5>
-        </div>
-        <div class="show-product-body">
-            <div class="container">
-                <div class="container-product">
-                    <thead>
-                        <tr>
-                            <th>
-                                <div class="display">
-                                    <div class="product-text">Sản phẩm
-                                    </div>
-                                    <div class="product-quality">
-                                        Số lượng
-                                    </div>
-                                </div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>
-                                <div class="display">
-                                    <div class="product-textt">Hinh Sản phẩm
-                                    </div>
-                                    <div class="product-qualityy">
-                                        x1
-                                    </div>
-                                </div>
-                            </th>
-                </div>
-                </tr>
-                </tbody>
-            </div>
-        </div>
-    </div>
+   
+    <?php 
+    include('_billdetail.php')
+    ?>
     <script>
         function updateStatus(billId) {
             $.ajax({
