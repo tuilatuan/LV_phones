@@ -132,10 +132,10 @@
                     <div class="display" style="border-bottom: 2px solid #dee2e6;">
                         <div class="form-group ">
                             <b><label for="image">Ảnh</label></b>
-                            <input type="file" name="catimage" id="catimage" accept=".jpg" class="form-control" required style="border:none;" onchange="document.getElementById('itemPhoto').src = window.URL.createObjectURL(this.files[0])">
+                            <input type="file" name="proimage" id="proimage" accept=".jpg" class="form-control" required style="border:none;" onchange="document.getElementById('itemPhoto').src = window.URL.createObjectURL(this.files[0])">
                             <small id="Info" class="form-text ">Chọn file .jpg</small>
-                            <input type="hidden" id="catId" name="catId" value="1">
-                            <button type="submit" class="btn btn-success my-1" name="updateCatPhoto">Cập
+                            <input type="hidden" id="proimgId" name="proimgId" value="">
+                            <button type="submit" class="btn btn-success my-1" name="updateproPhoto">Cập
                                 nhật</button>
                         </div>
                         <div class="form-group ">
@@ -180,7 +180,7 @@
                         <textarea class="form-control" id="descpro" name="desc" rows="2" required minlength="6" value=""></textarea>
                     </div>
                     <br>
-                    <input type="hidden" id="proId" name="proId" value="2">
+                    <input type="hidden" id="proId" name="proId" value="">
                     <button type="submit" class="btn btn-success" name="updatePro">Cập nhật</button>
                 </form>
             </div>
@@ -207,6 +207,8 @@
         document.querySelector('#descpro').value = detaill;
         document.querySelector('#quantitypro').value = qtyy;
         document.querySelector('#proId').value = id;
+        document.querySelector('#proimgId').value = id;
+       
         $('#cateId').val(cate);        
 
 

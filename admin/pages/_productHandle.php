@@ -71,17 +71,73 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['delPro'])) {
         $proID = $_POST['proId'];
         // echo $proID;
-        $str_query = "DELETE FROM product WHERE productID = $proID";
-        $query = mysqli_query($con, $str_query);
-        if ($query) {
-            echo "<script>alert('Thành công');
-            window.location=document.referrer;
-        </script>";
-        } else {
+        $str_pro = "SELECT * FROM product WHERE productID = $proID";
+        $query_pro = mysqli_query($con, $str_pro);
+        $row = mysqli_fetch_assoc($query_pro);
+        $nameimg = $row['productImage'];
+        $filename = $_SERVER['DOCUMENT_ROOT'] . "/LV_Phones/images/$nameimg";
+        
+        if(unlink($filename)){
+            $str_query = "DELETE FROM product WHERE productID = $proID";
+            $query = mysqli_query($con, $str_query);
+            if ($query) {
+                echo "<script>alert('Xóa thành công');
+                window.location=document.referrer;
+            </script>";
+            } else {
+                echo "
+                <script>alert('không thành công');
+                window.location=document.referrer;
+            </script>";
+            }
+        }else{
             echo "
-            <script>alert('không thành công');
+            <script>alert('Xóa hình không thành công');
             window.location=document.referrer;
         </script>";
+        }
+        
+    }
+    if (isset($_POST['updateproPhoto'])) {
+        $proID = $_POST['proimgId'];
+        $check = getimagesize($_FILES["proimage"]["tmp_name"]);
+        if ($check) {
+            $str_pro = "SELECT * FROM product WHERE productID = $proID";
+            $query_pro = mysqli_query($con, $str_pro);
+            $row = mysqli_fetch_assoc($query_pro);
+            $nameimg = $row['productImage'];
+            $filename = $_SERVER['DOCUMENT_ROOT'] . "/LV_Phones/images/$nameimg";
+            if (unlink($filename)) {
+                $newname = "phone-$proID";
+                $newfile = "$newname.jpg";
+                $targetdir = $_SERVER['DOCUMENT_ROOT'] . '/LV_Phones/images/';
+                $targetfile = "$targetdir$newfile";
+                if (move_uploaded_file($_FILES["proimage"]["tmp_name"], $targetfile)) {
+                    $str_query = "UPDATE `product` SET `productImage`='$newfile' WHERE productID = $proID";
+                    $query = mysqli_query($con, $str_query);
+                    if ($query) {
+                        echo "<script>alert('Đổi ảnh Thành công');
+                            window.location=document.referrer;
+                            </script>";
+                    }else{
+                        echo "<script>alert('Đổi ảnh không thành công');
+                            window.location=document.referrer;
+                            </script>";
+                    }
+                } else {
+                    echo "<script>alert('chuyển file không thành công');
+                        window.location=document.referrer;
+                    </script>";
+                }
+            } else {
+                echo "<script>alert(xóa file cũ không thành công');
+                    window.location=document.referrer;
+                </script>";
+            }
+        } else {
+            echo "<script>alert('Chọn lại ảnh');
+                    window.location=document.referrer;
+                </script>";
         }
     }
 }
