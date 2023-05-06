@@ -51,13 +51,15 @@
                 $count++;
                 echo " <tbody class='table-tbody'>
                         <tr>
-                            <th>$count</th>
+                            <th>$billID</th>
                             <th>$accountID</th>
                             <th>$address</th>
                             <th>$totalProduct</th>
                             <th>$totalPrice</th>
                             <th>$billDate</th>
-                            <th><select class='custom-select' name='status' id='status'>
+                            <th>
+                            <form  id='bill$billID'>
+                            <select class='custom-select status$billID' name='status' id='status' onchange='updateStatus($billID)'>
                                     <option value='0'>
                                         Đã đặt hàng
                                     </option>
@@ -79,7 +81,10 @@
                                     <option value='6'>
                                         Đơn hàng bị hủy.
                                     </option>
-                                </select></th>
+                                </select>
+                                <input type='hidden' name='billid' id='billid' value='$billID'>
+                                </form>
+                                </th>
                             <th>
                                 <span>
                                     <img src='assets/img/img1.jpg' alt='' class='img-style'>
@@ -119,7 +124,7 @@
                                 <div class="display">
                                     <div class="product-textt">Hinh Sản phẩm
                                     </div>
-                                    <div class="product-qualityy" > 
+                                    <div class="product-qualityy">
                                         x1
                                     </div>
                                 </div>
@@ -130,3 +135,33 @@
             </div>
         </div>
     </div>
+    <script>
+        function updateStatus(billId) {
+            $.ajax({
+                url: 'pages/_billHandle.php',
+                type: 'POST',
+                data: $("#bill" + billId).serialize(),
+                success: function(res) {
+                    location.reload();
+
+                }
+
+            });
+
+        }
+    </script>
+
+    <?php
+    $string = "SELECT * FROM bill ";
+    $query = mysqli_query($con, $string);
+    while ($row = mysqli_fetch_array($query)) {
+        $billID = $row['billID'];
+        $billStatus = $row['billStatus'];
+        echo "
+            <script>
+            document.querySelector('.status$billID').value = $billStatus;
+            </script>
+    ";
+    }
+
+    ?>
