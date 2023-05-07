@@ -69,6 +69,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 while($row = mysqli_fetch_array($queryy)){
                     $productId = $row['productID'];
                     $cartqty = $row['cartQuantity'];
+                    //cập nhật lại sớ lương
+                    $str_product = "SELECT * FROM product WHERE productID =  $productId ";
+                    $query_pro = mysqli_query($con, $str_product);
+                    while($pro  = mysqli_fetch_array($query_pro) ){
+                        $proID = $pro['productID'];
+                        $proqty = $pro['productQuantity'];
+                        $newqty = $proqty-$cartqty;
+                        $updpro = "UPDATE `product` SET `productQuantity`=$newqty WHERE productID = $proID";
+                        $query_upd = mysqli_query($con,$updpro);
+                    }
+                    // thêm chi tiết đơn hàng vào bildetail
                     $str_billdetail= "INSERT INTO `billdetails`(`productID`, `productQuantity`, `billID`) VALUES (' $productId','$cartqty','$billID')";
                     $query = mysqli_query($con,$str_billdetail);
                 }

@@ -1,12 +1,25 @@
 <main>
     <div class="analytics">
+        <?php 
+        $str_bill =" SELECT * FROM bill  ";
+        $query = mysqli_query($con, $str_bill);
+        $totalProbill = 0;
+        $totalPri = 0;
+    while($row = mysqli_fetch_array($query)){
+        $pro = $row['totalProduct'];
+        $pri =$row['totalPrice'];
+        $totalProbill = $totalProbill+$pro;
+        $totalPri = $totalPri+$pri;
+       
+    }
+        ?>
         <div class="analytic">
             <div class="analytic-icon">
-                <i class="fa-solid fa-eye"></i>
+            <i class="fa-solid fa-mobile-screen"></i>
             </div>
             <div class="analytic-info">
-                <h4>Tổng lượt truy cập</h4>
-                <h1>10.3M</h1>
+                <h4>Tổng sản phẩm bán được</h4>
+                <h1><?php echo  $totalProbill ?></h1>
             </div>
         </div>
         <div class="analytic">
@@ -14,8 +27,8 @@
                 <i class="fa-regular fa-clock"></i>
             </div>
             <div class="analytic-info">
-                <h4>Thời gian truy cập</h4>
-                <h1>20.9k</h1>
+                <h4>Tổng thu (chưa trừ vốn)</h4>
+                <h1><?php echo  $totalPri ?></h1>
             </div>
         </div>
         <div class="analytic">
