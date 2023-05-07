@@ -33,13 +33,16 @@
     <div class="container">
       <span class="catalory_title">Danh Mục</span>
       <div class="catalory_item row col-6">
+        <a class="catalory_all">
+          Tất cả sản phẩm 
+        </a>
         <?php
-        $str = "SELECT * FROM category ";
+        $str = "SELECT * FROM `category` ORDER BY `category`.`categoryID` ASC";
         $product_sql = mysqli_query($con, $str);
         while ($row = mysqli_fetch_array($product_sql)) {
         ?>
 
-          <a href="" class="catalory_item-name">
+          <a class="catalory_item-name" value="<?php echo $row['categoryID']; ?>">
             <?php echo $row['categoryName']; ?>
           </a>
 
@@ -47,27 +50,30 @@
       </div>
     </div>
   </div>
+  <div class="title"><div class="container"><h3>Tất cả sản phẩm: <span id="catename"></span></h3></div></div>
   <div id="productlist">
-    
+  
+
   </div>
   <nav aria-label="Page navigation example">
-      <ul class="pagination" style="justify-content:center;">
-        <?php
-        $productinpage = 10;
-        $totalproduct_str = "SELECT COUNT(*) FROM product";
-        $query = mysqli_query($con, $totalproduct_str);
-        $row = mysqli_fetch_row($query);
-        $totalproduct = $row[0];
-        $totalpage = ceil($totalproduct / $productinpage);
-        $count = 0;
-        while ($count < $totalpage) {
-          $count++;
-          echo "<li class='page-item'><a class='page-link' >$count</a></li>";
-        }
-        ?>
-      </ul>
-    </nav>
+    <ul class="pagination" style="justify-content:center;">
+      <?php
+      $productinpage = 12;
+      $totalproduct_str = "SELECT COUNT(*) FROM product";
+      $query = mysqli_query($con, $totalproduct_str);
+      $row = mysqli_fetch_row($query);
+      $totalproduct = $row[0];
+      $totalpage = ceil($totalproduct / $productinpage);
+      $count = 0;
+      while ($count < $totalpage) {
+        $count++;
+        echo "<li class='page-item'><a class='page-link' >$count</a></li>";
+      }
+      ?>
+    </ul>
+  </nav>
   <?php
+
   include('inc/_loginModal.php');
   include('inc/_sigupModal.php');
 
@@ -79,33 +85,76 @@
 <script src="js/lib/flickity.min.js"></script>
 <script src="js/main.js"></script>
 <script>
-  window.addEventListener('load', function(){
-    $.get("./inc/product.php", {page:1}, function(data) {
-            $("#productlist").html(data);
-          });
+  window.addEventListener('load', function() {
+    $.get("./inc/product.php", {
+      page: 1,
+      type: null
+    }, function(data) {
+      $("#productlist").html(data);
+    });
   })
-      function removenavactive(navitem) {
-        navitem.forEach(function(aitem) {
-          aitem.classList.remove("active");
-        });
-      }
-      var namepage = document.querySelectorAll('.page-item')
+
+  function removenavactive(navitem) {
+    navitem.forEach(function(aitem) {
+      aitem.classList.remove("active");
+    });
+  }
+  $(".catalory_all").click(function(){
+    document.querySelector('#catename').innerHTML = '';
+  })
+  var listtype = document.querySelectorAll('.catalory_item-name')
+  var type = null;
+  listtype.forEach(function(item, index) {
+    item.addEventListener('click', function(e) {
+      type = event.target.getAttribute('value');
+      removenavactive(namepage)
       namepage[0].classList.add("active")
-      var numpage = 0;
-      namepage.forEach(function(item, index) {
-        item.addEventListener('click', function(e) {
-          removenavactive(namepage)
-          item.classList.add("active")
-          numpage = index+1;
-          console.log(numpage);
-        })
+      name = item.innerHTML
+      document.querySelector('#catename').innerHTML = name;
+      
+      // console.log(item.innerHTML) ;
+
+    })
+  })
+  var namepage = document.querySelectorAll('.page-item')
+  namepage[0].classList.add("active")
+  var numpage = null;
+  namepage.forEach(function(item, index) {
+    item.addEventListener('click', function(e) {
+      removenavactive(namepage)
+      item.classList.add("active")
+      numpage = index + 1;
+      console.log(numpage);
+    })
+  });
+
+  $(document).ready(function() {
+    $(".catalory_all").click(function() {
+      $.get("./inc/product.php", {
+        page: 1,
+        type: null
+      }, function(data) {
+        $("#productlist").html(data);
       });
-      $(document).ready(function() {
-        $(".page-item").click(function() {
-          $.get("./inc/product.php", {page:numpage}, function(data) {
-            $("#productlist").html(data);
-          });
-        });
+    });
+    $(".catalory_item-name").click(function() {
+      console.log(type);
+      $.get("./inc/product.php", {
+        page: 1,
+        type: type,
+      }, function(data) {
+        $("#productlist").html(data);
       });
-    </script>
+    });
+    $(".page-item").click(function() {
+      $.get("./inc/product.php", {
+        page: numpage,
+        type: type
+      }, function(data) {
+        $("#productlist").html(data);
+      });
+    });
+  });
+</script>
+
 </html>

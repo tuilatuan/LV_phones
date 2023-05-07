@@ -1,8 +1,8 @@
 <div class="prefooter grid" style="margin-top: 60px;background-color: #47c781;padding: 16px 25px;">
-    <div class="grid wide">
-        <div class="row no-gutters" style="align-items: center;">
-            <div class="col l-6">
-                <div class="social-media row">
+    <div class="container">
+        <div class="row " style="align-items: center;">
+            <div class="col-md-6">
+                <div class="social-media justify-content-bettween" style="color: #fff; gap:30px;display:flex;flex-direction: row;"  >
                     <i class="fa-brands fa-facebook fa-2xl"></i>
                     <i class="fa-brands fa-instagram fa-2xl"></i>
                     <i class="fa-brands fa-twitter fa-2xl"></i>
@@ -10,10 +10,10 @@
                 </div>
             </div>
 
-            <div class="col l-4  l-o-1">
-                <form action="" class="input-email" style="display: flex;">
-                    <input type="text" placeholder="Nhập email để nhận ngay ưu đãi" name="text">
-                    <button type="button">Đăng ký</button>
+            <div class="col-md-6 row justify-content-right">
+                <form action="" class="input-email" style="display: flex;width: 100%">
+                    <input type="text" placeholder="Nhập email để nhận ngay ưu đãi" name="text" style="width: 100%;">
+                    <button type="button" class="btn btn-info" style="width: 100px">Đăng ký</button>
                 </form>
             </div>
         </div>

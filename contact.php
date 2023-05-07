@@ -37,19 +37,19 @@
     ?>
     <div class="container">
         <div class="form">
-            <div class="left">
-                <form action="page/xulyfeedback.php" method="post">
-                    <input id="mail" type="text" name="email" placeholder="Email"><br />
-                    <textarea placeholder="Nhập vào nội dung" name="content" id="content" class="note" cols="30" rows="10"></textarea>
+            <div class="left" style="width:400px; padding-right: 10px; border-right: 1px solid var(--green-cl)">
+                <form action="page/xulyfeedback.php" method="post" style="width: 100% ">
+                    <input id="mail" type="text" name="email" placeholder="Email" style="border:1px solid var(--green-cl); border-radius: 5px; margin-bottom: 5px"><br />
+                    <textarea placeholder="Nhập vào nội dung" name="content" id="content" class="note" cols="30" rows="10" style="width:100% ;border-radius: 5px;border:1px solid var(--green-cl); resize:none;"></textarea>
                     <!-- <input type="text" class="note" name="content" placeholder="Nhập vào nội dung"><br /> -->
-                    <input type="submit" class="sbmbtn" name="btnsub" value="Gửi yêu cầu">
+                    <input type="submit" class="sbmbtn btn btn-success" style="width: 100%;" name="btnsub" value="Gửi góp ý">
                 </form>
             </div>
-            <div class="right">
+            <div class="right" style="width: 70%">
                 <div class="right-contact">
                 <div class="row">
 			<div class="col-md-12">
-				<div class="panel panel-default">
+				<div class="panel panel-default">	
 					<div class="panel-heading">
 						<h3 class="panel-title"><strong>Người dùng phản hồi</strong></h3>
 					</div>
@@ -65,12 +65,31 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-									<td class="text-center"></td>
-									<td class="text-center"></td>
-									<td class="text-center"></td>
-									<td class="text-center"></td>
-								</tr>				
+									<?php 
+									 $string = "SELECT * FROM feedback WHERE accountID  = $userId";
+									 $query = mysqli_query($con, $string);
+									 $count = 0;
+									 while ($row = mysqli_fetch_array($query)) {
+										$feedbackID = $row['feedbackID'];
+										$accountID = $row['accountID'];
+										$email = $row['email'];
+										$content = $row['content'];
+										$time = $row['time'];
+										$answer = $row['answer'];
+										echo "
+										<tr>
+										<td class='text-center'>$email</td>
+										<td class='text-center'>$content</td>
+										<td class='text-center'>$time</td>";
+										if(!empty($row['answer'])){
+											echo "<td class='text-center'>$answer</td>";
+										}else{
+											echo "<td class='text-center'>Chưa có phản hồi</td>";
+										}
+										echo "</tr>";
+									 }
+									?>
+													
                             </tbody>
 							</table>
 						</div>

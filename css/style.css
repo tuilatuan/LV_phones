@@ -145,6 +145,7 @@ table {
   /*color*/
   --green-cl: #47c781;
   --gray-cl: #f5f5f5;
+  --gray-dark: #343a40;
   /*size*/
   --gap: 30px;
   --height-header: 60px;
@@ -346,6 +347,7 @@ table {
   padding: 0 10px;
   position: relative;
   text-decoration: none;
+  border-radius: 2px;
 }
 #navigation .nav_menu .nav_menu-item::after {
   content: "";

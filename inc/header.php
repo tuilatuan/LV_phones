@@ -15,7 +15,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 <div id="header">
     <div class="container">
         <div class="header_logo"><a href="index.php">LV Phones</a></div>
-        <form method="GET" action="./search.php" class="header_search">
+        <form method="GET" action="./inc/product.php" class="header_search">
             <input type="search" name="search" id="search" placeholder="Nhập thông tin bạn cần tìm" value="" />
             <button type="submit" title="Tìm kiếm">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -73,7 +73,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             <a href="intro.php" class="nav_menu-item">Giới thiệu</a>
             <a href="" class="nav_menu-item">Tin tức</a>
             <a href="contact.php" class="nav_menu-item">Liên hệ</a>
-            <a href="" class="nav_menu-item">Chi nhánh</a>
         </div>
     </div>
 </div>
