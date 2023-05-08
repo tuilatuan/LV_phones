@@ -743,3 +743,7 @@ strong > span {
 .modal-header {
   background: var(--green-cl);
 }
+.footer-icon {
+  display: flex;
+  justify-content: center;
+}

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row " style="align-items: center;">
             <div class="col-md-6">
-                <div class="social-media justify-content-bettween" style="color: #fff; gap:30px;display:flex;flex-direction: row;"  >
+                <div class="social-media justify-content-bettween" style="color: #fff; gap:30px;display:flex;flex-direction: row;">
                     <i class="fa-brands fa-facebook fa-2xl"></i>
                     <i class="fa-brands fa-instagram fa-2xl"></i>
                     <i class="fa-brands fa-twitter fa-2xl"></i>
@@ -27,20 +27,26 @@
                 LVPhones</p>
             <div style="margin-top: 10px;">
                 <div class="footer-location">
-                    <i class="fa-sharp fa-solid fa-location-dot" style="margin-right: 10px;"></i>
-                    <p style="font-weight:bold ;font-size:15px; margin-right: 5px;margin-top: 0; ;">Địa chỉ</p>
+                    <div class="footer-icon">
+                        <i class="fa-sharp fa-solid fa-location-dot" style="margin-right: 10px;"></i>
+                        <p style="font-weight:bold ;font-size:15px; margin-right: 5px;margin-top: 0; ;">Địa chỉ</p>
+                    </div>
                     <p>273 An Dương Vương ,quận 5,Hồ Chí Minh</p>
                 </div>
                 <div class="footer-phone">
-                    <i class="fa-solid fa-phone" style="margin-right: 10px;"></i>
-                    <p style="font-weight:bold ;font-size:15px; margin-right: 5px;margin-top: 0;margin-left: -5px ;">
-                        Điện thoại</p>
+                    <div class="footer-icon">
+                        <i class="fa-solid fa-phone" style="margin-right: 10px;"></i>
+                        <p style="font-weight:bold ;font-size:15px; margin-right: 5px;margin-top: 0;margin-left: -5px ;">
+                            Điện thoại</p>
+                    </div>
                     <p>1800 1234</p>
                 </div>
                 <div class="footer-email">
-                    <i class="fa-solid fa-envelope" style="margin-right: 10px;"></i>
-                    <p style="font-weight:bold ;font-size:15px; margin-right: 5px;margin-top: 0;margin-left: -5px ;">
-                        Email</p>
+                    <div class="footer-icon">
+                        <i class="fa-solid fa-envelope" style="margin-right: 10px;"></i>
+                        <p style="font-weight:bold ;font-size:15px; margin-right: 5px;margin-top: 0;margin-left: -5px ;">
+                            Email</p>
+                    </div>
                     <p>lvphones@gmail.com</p>
                 </div>
             </div>
