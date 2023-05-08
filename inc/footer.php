@@ -81,6 +81,7 @@
                     <h2 style="font-family: Arial, Helvetica, sans-serif; font-weight: bold;margin-top:20px ;">Đặt hàng
                         online giao tận tay</h2>
                     <div>
+                        
                         <p>HOTLINE</p>
                         <p style="font-weight: bold; color: #47c781;font-size: 14px;">1800.1234</p>
                         <p>(8h-22h)</p>
