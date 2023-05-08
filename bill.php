@@ -75,9 +75,41 @@
 									overflow: hidden;'>$address</td>
 									<td class='text-center'>$totalPro</td>
 									<td class='text-center'>$totalPri</td>
-									<td class='text-center'>$date</td>
-									<td class='text-center'>$status</td>
-									<td><a href='' class='btn-lg' style='font-size:13px;' data-toggle='modal' data-target='#bill-detail$billID'>Chi tiết hóa đơn</a></td>
+									<td class='text-center'>$date</td>";
+					
+									  switch ($status) {
+										case '0':
+										  echo "<td class='text-center'>
+										  Đã đặt hàng</td>";
+										  break;
+										case '1':
+										  echo "<td class='text-center'>
+										  Xác nhận đơn đặt hàng </td>";
+										  break;
+										case '2':
+										  echo "<td class='text-center'>
+										  Đang chuẩn bị đơn đặt hàng </td>";
+										  break;
+										case '3':
+										  echo "<td class='text-center'>
+										  Đang giao hàng </td>";
+										  break;
+										case '4':
+										  echo "<td class='text-center'>
+										  Đã giao hàng </td>";
+										  break;
+										case '5':
+										  echo "<td class='text-center'>
+										  Đơn hàng bị từ chối </td>";
+									      break;
+										case '6':
+										  echo "<td class='text-center'>
+										  Đơn hàng bị hủy </td>";
+										  break;
+									  }
+									
+						
+									echo "<td><a href='' class='btn-lg' style='font-size:13px;' data-toggle='modal' data-target='#bill-detail$billID'>Chi tiết hóa đơn</a></td>
 								</tr>";
 									}
 									?>
