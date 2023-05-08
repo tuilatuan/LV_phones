@@ -1,4 +1,4 @@
-<main>
+<m  ain>
     <div class="product-info">
         <form action="pages/_productHandle.php" method="POST" enctype="multipart/form-data" class="product-info-left" style="height: 630px !important;">
             <div class="product-info-left-header">
@@ -67,7 +67,7 @@
                     </thead>
                     <?php
 
-                    $string = "SELECT * FROM `product` ORDER BY `product`.`productName` ASC ";
+                    $string = "SELECT * FROM `product` ORDER BY `product`.`productID` ASC ";
                     $query = mysqli_query($con, $string);
                     while ($row = mysqli_fetch_array($query)) {
                         $productID = $row['productID'];
@@ -186,7 +186,7 @@
             </div>
         </div>
     </div>
-</main>
+</m>
 <script>
     function updatePro(id) {
         var proid = '#proid' + id;

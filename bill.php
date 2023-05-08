@@ -46,7 +46,7 @@
 								<thead>
 									<tr>
 										<td class="text-center"><strong>Mã hóa đơn</strong></td>
-										<td class="text-center"><strong>Mã tài khoản</strong></td>
+										<td class="text-center"><strong>Email</strong></td>
 										<td class="text-center"><strong>Địa chỉ</strong></td>
 										<td class="text-center"><strong>Số lượng sản phẩm</strong></td>
 										<td class="text-center"><strong>Thành tiền</strong></td>
@@ -151,6 +151,8 @@
 	<?php
 	include('inc/footer.php');
 	?>
+
+	
 </body>
 
 </html>

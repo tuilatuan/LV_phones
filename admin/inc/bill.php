@@ -86,7 +86,7 @@
                                 </form>
                                 </th>
                             <th>
-                                <button id='#bill-detail$billID'  class='btn btn-success'>Chi tiết
+                                <button id='#bill-detailbtn$billID'  class='btn btn-success' onclick='openModal($billID)'>Chi tiết
                                 </button>
                             </th>
                         </tr>
@@ -96,10 +96,9 @@
             ?>
         </table>
     </div>
-   
-    <?php 
-    include('_billdetail.php')
-    ?>
+<?php 
+include('_billdetail.php');
+?>
     <script>
         function updateStatus(billId) {
             $.ajax({
@@ -128,5 +127,4 @@
             </script>
     ";
     }
-
     ?>

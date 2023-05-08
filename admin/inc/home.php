@@ -28,10 +28,10 @@
             </div>
             <div class="analytic-info">
                 <h4>Tổng thu (chưa trừ vốn)</h4>
-                <h1><?php echo  $totalPri ?></h1>
+                <h1><?php echo  $totalPri ?>.VND<   /h1>
             </div>
         </div>
-        <div class="analytic">
+        <!-- <div class="analytic">
             <div class="analytic-icon">
                 <i class="fa-solid fa-user"></i>
             </div>
@@ -48,6 +48,6 @@
                 <h4>Lượt yêu thích</h4>
                 <h1>2M</h1>
             </div>
-        </div>
+        </div> -->
     </div>
 </main>
