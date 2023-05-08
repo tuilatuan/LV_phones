@@ -8,6 +8,7 @@ if(isset($_POST['category'])){
 
     $cat_query="SELECT * FROM category";
     $result=mysqli_query($con,$cat_query);
+     
     
 
     if(mysqli_num_rows($result)>0)
