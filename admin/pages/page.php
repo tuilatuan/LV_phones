@@ -14,7 +14,7 @@
         include('./inc/cate.php');
         break;
       case '4':
-        include('./inc/product.php');
+        include('./inc/productManage.php');
         break;
       case '5':
         include('./inc/feedback.php');

@@ -10,7 +10,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 }
 ?>
 <div class="container">
-    
+
     <div class="product_listitem">
 
         <?php
@@ -33,7 +33,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     ";
         } else {
             $productinpage = 12;
-            $typePro = $_GET['type'];
             $page = $_GET["page"];
             settype($page, 'int');
             $from = ($page - 1) * $productinpage;
@@ -47,7 +46,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             $noResult = false;
             $productId = $row['productID'];
             $productName = $row['productName'];
-            $productPrice = $row['productPrice'];
+            $productPrice =  number_format($row['productPrice'], 0, ".", ".");;
+
             $productDetail = $row['productDetail'];
             $productCategorieId = $row['categoryID'];
             $productImage = $row['productImage'];
@@ -58,10 +58,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                     </div>
                     <a href='' class='product_item-content'>
                         <span class='name'>
-                            $productName
+                            $productName 
                         </span>
-                        <p class='price'>
-                            $productPrice
+                        <p class='price'>$productPrice VND
                         </p>
                     </a>
                         <div class='action'>";
@@ -96,4 +95,5 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         }
         ?>
     </div>
+
 </div>

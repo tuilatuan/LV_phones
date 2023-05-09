@@ -28,7 +28,7 @@
             </div>
             <div class="analytic-info">
                 <h4>Tổng thu (chưa trừ vốn)</h4>
-                <h1><?php echo  $totalPri ?>.VND<   /h1>
+                <h1><?php echo  $totalPri ?>.VND </h1>
             </div>
         </div>
         <!-- <div class="analytic">

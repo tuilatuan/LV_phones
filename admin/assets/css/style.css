@@ -820,3 +820,26 @@ label {
     box-shadow: var(--shadow);
 }
 
+/* from search product */
+.boxaction{
+    margin: 10px;
+}
+.formsearch{
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}.formsearch fieldset{
+    padding: 10px;
+}
+.formsearch .box{
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    margin: 10px;   
+}
+.formsearch .gr-btn {
+    display: flex;
+    justify-content: space-between;
+}
+.formsearch .gr-btn .btn{
+    width: max-content;
+}

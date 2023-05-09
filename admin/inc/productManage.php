@@ -1,5 +1,6 @@
-<m  ain>
+<main>
     <div class="product-info">
+
         <form action="pages/_productHandle.php" method="POST" enctype="multipart/form-data" class="product-info-left" style="height: 630px !important;">
             <div class="product-info-left-header">
                 Thêm Sản Phẩm Mới
@@ -26,7 +27,7 @@
                 <div class="form-group">
                     <label class="control-label">Danh mục</label>
                     <br>
-                    <select name="categoryId" id="categoryId" class="custom-select browser-default"   required>
+                    <select name="categoryId" id="categoryId" class="custom-select browser-default" required>
                         <option hidden disabled selected value>---</option>
                         <?php
 
@@ -56,6 +57,54 @@
         </form>
         <div class="product-info-right">
             <div class="product-info-right-body">
+                <div class="boxaction"> <?php
+                                        if (!empty($_POST)) {
+                                            $_SESSION['productadm_search'] = $_POST;
+                                        }
+                                        if (!empty($_SESSION['productadm_search'])) {
+                                            $where = "";
+                                            // var_dump($_SESSION['productadm_search']);exit();
+                                            foreach ($_SESSION['productadm_search'] as $type => $value) {
+                                                if (!empty($value)) {
+                                                    switch ($type) {
+                                                        case 'productName':
+                                                            $where .= (!empty($where)) ? " AND `$type` LIKE '%$value%'" : "`$type` LIKE '%$value%'";
+                                                            break;
+                                                        default:
+                                                            $where .= (!empty($where)) ? " AND $type = $value" : "$type = $value";
+                                                            break;
+                                                    }
+                                                }
+                                            }
+                                            extract($_SESSION['productadm_search']);
+                                            // var_dump($productID);exit();
+                                        }
+                                        if (!empty($where)) {
+                                            $string = "SELECT * FROM `product` WHERE ($where) ORDER BY `product`.`productID` ASC ";
+                                        } else {
+                                            $string = "SELECT * FROM `product` ORDER BY `product`.`productID` ASC ";
+                                        }
+                                        $query = mysqli_query($con, $string);
+                                        ?>
+                    <form action="?chon=t&id=4" method="POST" class="formsearch">
+                        <fieldset>
+                            <legend>Tìm kiếm sản phẩm</legend>
+                            <div class="box box-id">
+                                <label for="productID">ID:</label>
+                                <input class="inputsearch" type="text" name="productID" id="productID"  value="<?= !empty($productID) ? $productID : "" ?>" placeholder="Nhập id sản phẩm">
+                            </div>
+                            <div class="box box-name">
+                                <label for="productName">Tên:</label>
+                                <input class="inputsearch" type="text" name="productName" name="productName" value="<?= !empty($productName) ? $productName : "" ?>" placeholder="Nhập tên sản phẩm">
+                            </div>
+                            <div class="gr-btn">
+                            <input type="submit" value="Tìm" class="btn btn-active">
+                            <input type="submit" value="Tất cả" class="btn btn-danger" onclick="clearI()">
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
                 <table class="table table-product-info">
                     <thead class="table-product-info-header">
                         <tr>
@@ -67,8 +116,7 @@
                     </thead>
                     <?php
 
-                    $string = "SELECT * FROM `product` ORDER BY `product`.`productID` ASC ";
-                    $query = mysqli_query($con, $string);
+
                     while ($row = mysqli_fetch_array($query)) {
                         $productID = $row['productID'];
                         $categoryID = $row['categoryID'];
@@ -160,7 +208,7 @@
                     <div class="form-group">
                         <b><label for="catId">Loại sản phẩm</label></b>
                         <!-- <input class="form-control" id="catId" name="catId" value="" type="number" min="1" required> -->
-                        <select name="cateId" id="cateId" class="custom-select browser-default"    "  required>
+                        <select name="cateId" id="cateId" class="custom-select browser-default" "  required>
                         <option hidden disabled selected value>---</option>
                         <?php
 
@@ -175,9 +223,9 @@
 
                     </select>
                     </div>
-                    <div class="text-left">
-                        <b><label for="desc">Mô tả</label></b>
-                        <textarea class="form-control" id="descpro" name="desc" rows="2" required minlength="6" value=""></textarea>
+                    <div class=" text-left">
+                            <b><label for="desc">Mô tả</label></b>
+                            <textarea class="form-control" id="descpro" name="desc" rows="2" required minlength="6" value=""></textarea>
                     </div>
                     <br>
                     <input type="hidden" id="proId" name="proId" value="">
@@ -186,7 +234,7 @@
             </div>
         </div>
     </div>
-</m>
+</main>
 <script>
     function updatePro(id) {
         var proid = '#proid' + id;
@@ -194,9 +242,9 @@
         var pri = '#proPri' + id
         var qty = '#proQty' + id
         var detail = '#proDetail' + id
-        var cateid = '#catepro'+id
+        var cateid = '#catepro' + id
         document.querySelector('#editproid').innerHTML = id;
-        var cate =document.querySelector(cateid).innerHTML;
+        var cate = document.querySelector(cateid).innerHTML;
         var proidd = document.querySelector(proid).innerHTML;
         var pronamee = document.querySelector(proname).innerHTML;
         var prii = document.querySelector(pri).innerHTML;
@@ -208,13 +256,16 @@
         document.querySelector('#quantitypro').value = qtyy;
         document.querySelector('#proId').value = id;
         document.querySelector('#proimgId').value = id;
-       
-        $('#cateId').val(cate);        
+
+        $('#cateId').val(cate);
 
 
 
-        console.log(proidd   + '/' + pronamee + '/' + prii + '/' + qtyy + '/' + detaill +'/' +cate);
+        console.log(proidd + '/' + pronamee + '/' + prii + '/' + qtyy + '/' + detaill + '/' + cate);
 
     }
     updatePro();
+    function clearI(){
+        document.querySelector('.inputsearch').value='';
+    }
 </script>

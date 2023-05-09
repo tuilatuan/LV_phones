@@ -34,7 +34,7 @@
       <span class="catalory_title">Danh Mục</span>
       <div class="catalory_item row col-6">
         <a class="catalory_all">
-          Tất cả sản phẩm 
+          Tất cả sản phẩm
         </a>
         <?php
         $str = "SELECT * FROM `category` ORDER BY `category`.`categoryID` ASC";
@@ -50,16 +50,29 @@
       </div>
     </div>
   </div>
-  <div class="title"><div class="container"><h3>Tất cả sản phẩm: <span id="catename"></span></h3></div></div>
+  <div class="title">
+    <div class="container">
+      <h3>Tất cả sản phẩm: <span id="catename"></span></h3>
+    </div>
+  </div>
   <div id="productlist">
-  
+
 
   </div>
   <nav aria-label="Page navigation example">
     <ul class="pagination" style="justify-content:center;">
       <?php
-      $productinpage = 12;
-      $totalproduct_str = "SELECT COUNT(*) FROM product";
+      if (!empty($_GET['type'])) {
+        $productinpage = 5;
+        $typePro = $_GET['type'];
+        $totalproduct_str = "SELECT COUNT(*) FROM product WHERE  categoryID = $typePro";
+      }
+      else {
+        $productinpage = 12;
+        $totalproduct_str = "SELECT COUNT(*) FROM product ";
+      }
+      // $productinpage = 12;
+      // $totalproduct_str = "SELECT COUNT(*) FROM product";
       $query = mysqli_query($con, $totalproduct_str);
       $row = mysqli_fetch_row($query);
       $totalproduct = $row[0];
@@ -94,13 +107,14 @@
     });
   })
 
-  function removenavactive(navitem) {
+ function removenavactive(navitem) {
     navitem.forEach(function(aitem) {
       aitem.classList.remove("active");
     });
   }
-  $(".catalory_all").click(function(){
+  $(".catalory_all").click(function() {
     document.querySelector('#catename').innerHTML = '';
+
   })
   var listtype = document.querySelectorAll('.catalory_item-name')
   var type = null;
@@ -111,7 +125,7 @@
       namepage[0].classList.add("active")
       name = item.innerHTML
       document.querySelector('#catename').innerHTML = name;
-      
+
       // console.log(item.innerHTML) ;
 
     })
@@ -127,9 +141,9 @@
       console.log(numpage);
     })
   });
-
   $(document).ready(function() {
     $(".catalory_all").click(function() {
+      type = null
       $.get("./inc/product.php", {
         page: 1,
         type: null
@@ -137,6 +151,9 @@
         $("#productlist").html(data);
       });
     });
+  })
+  $(document).ready(function() {
+
     $(".catalory_item-name").click(function() {
       console.log(type);
       $.get("./inc/product.php", {
