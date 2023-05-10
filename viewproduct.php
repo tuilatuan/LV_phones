@@ -39,15 +39,23 @@
                 $row = mysqli_fetch_array($result);
                 $productImg = $row['productImage'];
                 $productName = $row['productName'];
-                $productPrice   = $row['productPrice'];
-                $productQuan = $row ['productQuantity'];
+                $productPrice   = number_format($row['productPrice'], 0, ".", ".");
+                $productQuan = $row['productQuantity'];
                 echo " <div class='img'>
                                     <a><img src='./images/$productImg' class='img' /></a>
                                 </div>  
                                 <div class='content'>
                                     <div class='info'>
-                                        <h5>$productName</h5>
-                                        <strong style=margin-bottom: 16px;color:#2fa564;'>$productPrice <span>VNĐ</span></strong>
+                                        <h5 style='font-size: 1.8rem;'>$productName</h5>
+                                        <strong style='margin-bottom: 16px; color:#2fa564;'>$productPrice <span>VNĐ</span></strong>
+                                        <div class='content-icon'>
+                                        <i class='fa-sharp icon-stars fa-solid fa-star'></i>
+                                        <i class='fa-sharp icon-stars fa-solid fa-star'></i>
+                                        <i class='fa-sharp icon-stars fa-solid fa-star'></i>
+                                        <i class='fa-sharp icon-stars fa-solid fa-star'></i>
+                                        <i class='fa-sharp icon-stars fa-solid fa-star'></i>
+                                        <span>Có 30 đánh giá</span>
+                                        </div>
                                         <div class='info-title'>Nhận ngay khuyến mãi đặc biệt</div>
                                         <ul class='info-list'>
                                         <li><i class='fa-solid fa-circle-check' style='color: #15f505;'></i>
@@ -62,24 +70,24 @@
                                         </ul>
                                     </div>
                                 <div class='btnall'>";
-                                if ($productQuan  <= 0) {
-                                    echo "<button class='btn-danger btn btnnouser' disabled >Hết hàng</button>";
-                                  } else {
-                                    if ($loggedin) {
-                                      $quaSql = "SELECT `cartQuantity` FROM `cart` WHERE productID = '$productId' AND accountID='$userId'";
-                                      $quaresult = mysqli_query($con, $quaSql);
-                                      $quaExistRows = mysqli_num_rows($quaresult);
-                                      if ($quaExistRows == 0) {
-                                        echo "<form action='page/xulygiohang.php' method='POST'>
+                if ($productQuan  <= 0) {
+                    echo "<button class='btn-danger btn btnnouser' disabled >Hết hàng</button>";
+                } else {
+                    if ($loggedin) {
+                        $quaSql = "SELECT `cartQuantity` FROM `cart` WHERE productID = '$productId' AND accountID='$userId'";
+                        $quaresult = mysqli_query($con, $quaSql);
+                        $quaExistRows = mysqli_num_rows($quaresult);
+                        if ($quaExistRows == 0) {
+                            echo "<form action='page/xulygiohang.php' method='POST'>
                                              <input type='hidden' name='itemId' id='itemId' value='$productId'>
                                              <button type='submit' name='addCart' class='btn-info btnnouser btn mx-2'>Thêm vào giỏ hàng</button>";
-                                      } else {
-                                        echo "<a href='viewCart.php'><button class='btn-info btn btnnouser'>Đi tới giỏ hàng</button></a>";
-                                      }
-                                    } else {
-                                      echo "<button class='btn-info btn btnnouser' data-toggle='modal' data-target='#myModal' >Thêm vào giỏ hàng</button>";
-                                    }
-                                  };
+                        } else {
+                            echo "<a href='Cart.php'><button class='btn-info btn btnnouser'>Đi tới giỏ hàng</button></a>";
+                        }
+                    } else {
+                        echo "<button class='btn-info btn btnnouser' data-toggle='modal' data-target='#myModal' >Thêm vào giỏ hàng</button>";
+                    }
+                };
                 echo "</form> 
                 </div>
                 <div class='feature'>

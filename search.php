@@ -43,21 +43,21 @@
                     $noResult = false;
                     $productId = $row['productID'];
                     $productName = $row['productName'];
-                    $productPrice = $row['productPrice'];
+                    $productPrice = number_format($row['productPrice'], 0, ".", ".");
                     $productDetail = $row['productDetail'];
                     $productCategorieId = $row['categoryID'];
                     $productImage = $row['productImage'];
                     echo "
                 <div class='product_item'>
                     <div class='product_item-img'>
-                        <a href='' class='aimg'><img src='images/$productImage ' alt='' /></a>
+                        <a href='viewproduct.php?productId=$productId' class='aimg'><img src='images/$productImage ' alt='' /></a>
                     </div>
                     <a href='' class='product_item-content'>
                         <span class='name'>
                             $productName
                         </span>
                         <p class='price'>
-                            $productPrice
+                            $productPrice VND
                         </p>
                     </a>
                         <div class='action'>";

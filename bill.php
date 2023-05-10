@@ -23,6 +23,10 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<!-- <script src="js/lib/jquery.min.js"></script>
+  <script src="js/lib/popper.min.js"></script>
+  <script src="js/lib/bootstrap.min.js"></script>
+  <script src="js/lib/jquery-3.1.1.min.js"></script> -->
 	<title>Bill</title>
 </head>
 
@@ -62,7 +66,7 @@
 										$billID = $row_bill['billID'];
 										$address = $row_bill['address'];
 										$totalPro = $row_bill['totalProduct'];
-										$totalPri = $row_bill['totalPrice'];
+										$totalPri = number_format($row_bill['totalPrice'], 0, ".", ".");
 										$date = $row_bill['billDate'];
 										$status = $row_bill['billStatus'];
 										echo "<tr>
@@ -74,7 +78,7 @@
 									text-overflow: ellipsis;
 									overflow: hidden;'>$address</td>
 									<td class='text-center'>$totalPro</td>
-									<td class='text-center'>$totalPri</td>
+									<td class='text-center'>$totalPri VND</td>
 									<td class='text-center'>$date</td>";
 					
 									  switch ($status) {
@@ -162,14 +166,14 @@
 								$row = mysqli_fetch_assoc($query_Pro);
 								$proName = $row['productName'];
 								$img = $row['productImage'];
-								$proPri = $row['productPrice'];
+								$proPri = number_format($row['productPrice'], 0, ".", ".");
 								echo "<tbody>
 							<tr >
 												<td class='text-center'><strong>$billID</strong></td>
 												<td class='text-center'><img src='images/$img' alt='' style='max-width:60px;'></td>
 												<td class='text-center'><strong>$proName</strong></td>
 												<td class='text-center'><strong>$ProQty</strong></td>
-												<td class='text-center'><strong>$proPri</strong></td>
+												<td class='text-center'><strong>$proPri VND</strong></td>
 											</tr>
 										</tbody>";
 							} ?>
@@ -180,7 +184,10 @@
 			</div>
 		<?php } ?>
 	</div>
++
 	<?php
+	include('inc/_loginModal.php');
+	include('inc/_sigupModal.php');
 	include('inc/footer.php');
 	?>
 

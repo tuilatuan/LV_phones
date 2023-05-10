@@ -33,14 +33,14 @@
                         $row = mysqli_fetch_assoc($query_Pro);
                         $proName = $row['productName'];
                         $img = $row['productImage'];
-                        $proPri = $row['productPrice'];
+                        $proPri = number_format($row['productPrice'], 0, ".", ".");
                         echo "<tbody>
 							<tr >
 												<td class='text-center'><strong>$billID</strong></td>
 												<td class='text-center'><img src='../images/$img' alt='' style='max-width:60px;'></td>
 												<td class='text-center'><strong>$proName</strong></td>
 												<td class='text-center'><strong>$ProQty</strong></td>
-												<td class='text-center'><strong>$proPri</strong></td>
+												<td class='text-center'><strong>$proPri VND</strong></td>
 											</tr>
 										</tbody>";
                     } ?>

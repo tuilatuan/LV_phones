@@ -62,15 +62,11 @@
   <nav aria-label="Page navigation example">
     <ul class="pagination" style="justify-content:center;">
       <?php
-      if (!empty($_GET['type'])) {
-        $productinpage = 5;
-        $typePro = $_GET['type'];
-        $totalproduct_str = "SELECT COUNT(*) FROM product WHERE  categoryID = $typePro";
-      }
-      else {
+      
+      
         $productinpage = 12;
         $totalproduct_str = "SELECT COUNT(*) FROM product ";
-      }
+      
       // $productinpage = 12;
       // $totalproduct_str = "SELECT COUNT(*) FROM product";
       $query = mysqli_query($con, $totalproduct_str);

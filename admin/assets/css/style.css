@@ -246,8 +246,9 @@ img {
 
 .analytics {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 0rem 2.5rem;
+    place-items: center;
 }
 
 .analytic {
@@ -259,6 +260,8 @@ img {
     text-align: center;
     margin-top: 1.5rem;
     width: max-content;
+    flex-direction: column  ;
+
 }
 
 .analytic:hover {
@@ -267,11 +270,15 @@ img {
     transition: .4s;
 }
 
+.analytic-info{
+    margin-top: 0.5rem;
+}
 .analytic-info h4 {
     font-weight: 400;
     color: #555;
     font-size: .98rem;
     margin-bottom: .5rem;
+    
 }
 
 .analytic-info h1 {
@@ -419,7 +426,7 @@ img {
 
 table.table-content tr th {
     border-color: #e9e9e9;
-    padding: 12px 15px;
+    padding: 12px 10px;
     vertical-align: middle;
     font-size: 1rem;
     font-weight: 400;
@@ -820,9 +827,14 @@ label {
     box-shadow: var(--shadow);
 }
 
-/* from search product */
+/* from search product  */
 .boxaction{
     margin: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.boxaction .sortpro{
+    margin-right: 20px;
 }
 .formsearch{
     display: flex;
@@ -842,4 +854,46 @@ label {
 }
 .formsearch .gr-btn .btn{
     width: max-content;
+}
+.namepageproduct{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.boxtext{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.selbox{
+    display: flex;
+}.selbox .btn{
+    margin-left: 5px;
+}
+.fm-gr{
+    display: flex;
+    align-items: center;
+    padding: 0 !important;
+}
+.fm-gr .box-inp{
+    display: flex;
+}
+.fm-gr .gr-btn{
+    display: flex;
+    flex-direction: column;
+}
+.fm-gr .gr-btn .btn{
+    width: 70px;
+    margin: 3px;
+}
+.no-feedback{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    border-radius: 10px;
 }

@@ -4,6 +4,33 @@
             <div class="table-title-left">
                 <span>Hóa Đơn</span>
             </div>
+            <form action="?chon=t&id=4" method="POST" class="formsearch">
+                <fieldset class="fm-gr">
+                    <legend>Tìm kiếm sản phẩm</legend>
+                    <div class="box-inp">
+                        <div class="box box-id">
+                            <label for="productID">ID:</label>
+                            <input class="inputsearch" type="text" name="productID" id="productID" value="<?= !empty($productID) ? $productID : "" ?>" placeholder="Nhập id sản phẩm">
+                        </div>
+                        <div class="box box-name">
+                            <label for="productName">Tên:</label>
+                            <input class="inputsearch" type="text" name="productName" id="productName" value="<?= !empty($productName) ? $productName : "" ?>" placeholder="Nhập tên sản phẩm">
+                        </div>
+                    </div>
+                    <div class="gr-btn">
+                        <input type="submit" value="Tìm" class="btn btn-active">
+                        <input type="submit" value="Tất cả" class="btn btn-danger" onclick="clearI()">
+                    </div>
+                </fieldset>
+            </form>
+            <div class="sortpro">
+                        <label for="sortpro">Sắp xế theo giá: </label>
+                        <select name="sortpro" id="sortpro" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+                            <option value="?chon=t&id=4"  <?php if(isset($_GET['sort'])&& $_GET['sort']== ''){?> selected <?php }?> >---</option>
+                            <option value="?chon=t&id=4&field=productPrice&sort=desc"  <?php if(isset($_GET['sort'])&& $_GET['sort']== 'desc'){?> selected <?php }?>>Giảm dần</option>
+                            <option value="?chon=t&id=4&field=productPrice&sort=asc" <?php if(isset($_GET['sort'])&& $_GET['sort']== 'asc'){?> selected <?php }?>  >Tăng dần</option>
+                        </select>
+                    </div>
             <div class="table-title-right">
                 <!-- <div class="button-print">
                     <a href="">
@@ -45,7 +72,7 @@
                 $billID = $row['billID'];
                 $address = $row['address'];
                 $totalProduct = $row['totalProduct'];
-                $totalPrice = $row['totalPrice'];
+                $totalPrice =  number_format($row['totalPrice'], 0, ".", ".");
                 $billDate = $row['billDate'];
                 $billStatus = $row['billStatus'];
                 $count++;
@@ -55,7 +82,7 @@
                             <th>$accountID</th>
                             <th>$address</th>
                             <th>$totalProduct</th>
-                            <th>$totalPrice</th>
+                            <th>$totalPrice VND</th>
                             <th>$billDate</th>
                             <th>
                             <form  id='bill$billID'>
@@ -96,9 +123,9 @@
             ?>
         </table>
     </div>
-<?php 
-include('_billdetail.php');
-?>
+    <?php
+    include('_billdetail.php');
+    ?>
     <script>
         function updateStatus(billId) {
             $.ajax({

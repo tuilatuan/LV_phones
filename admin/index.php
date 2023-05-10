@@ -16,8 +16,10 @@ if ((isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) ||
     $adminloggedin = false;
     $userId = 0;
 }
-
-if ($manageloggedin) {
+if((isset($_SESSION['loggedin']) &&  $_SESSION['loggedin'] == true)){
+    header("location: /LV_Phones/index.php");
+}
+else if ($manageloggedin) {
 ?>
 
     <!DOCTYPE html>
@@ -56,7 +58,7 @@ if ($manageloggedin) {
                     <a href="index.php" style='color:#000;'>
                         <h2>
                             <i class="fa-brands fa-apple"></i>
-                            Iphone
+                            LV Phones
                         </h2>
                     </a>
                 </div>
@@ -138,7 +140,8 @@ if ($manageloggedin) {
 
     </html>
 <?php
-} else {
+} 
+else {
     header("location: /LV_Phones/index.php?loginsuccess=false");
 }
 ?>

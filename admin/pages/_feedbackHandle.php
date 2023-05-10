@@ -12,5 +12,11 @@ session_start();
                             window.location=document.referrer;
                             </script>";
         }
+        if (isset($_POST['DelFeed'])) {
+            $feedbackID = $_POST['feedbackID'];
+            $qtr = "DELETE FROM `feedback` WHERE `feedbackID` = $feedbackID";
+            $query = mysqli_query($con, $qtr);
+            header('location: http://localhost/LV_Phones/admin/index.php?chon=t&id=5');
+        }
     }
 ?>

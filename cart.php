@@ -69,6 +69,8 @@
                         $count = 0;
                         $totalPrice = 0;
                         $totalQuan = 0;
+                        $ttPrice=0;
+                        $tt=0;
                         while ($cartquery = mysqli_fetch_assoc($query)) {
                             $productId = $cartquery['productID'];
                             $productName = $cartquery['productName'];
@@ -77,8 +79,11 @@
                             $productQuan = $cartquery['cartQuantity'];
                             $count++;
                             $total = $productPrice * $productQuan;
-                            $totalPrice = $totalPrice + $total;
+                            $totalPrice =  $totalPrice + $total;
+                            $ttPrice = number_format( $totalPrice , 0, ".", ".");
                             $totalQuan = $totalQuan + $productQuan;
+                            $proPrice = number_format( $productPrice, 0, ".", ".");
+                            $tt = number_format(  $total, 0, ".", ".");
                             echo "
                             <div class='cart_detail-item row align-items-center'>
                             <span class='no col'>$count</span>
@@ -87,14 +92,14 @@
                             </div>
                             <div class='info col-3'>
                                 <span class='name'>$productName</span>
-                                <p class='price'>$productPrice.VND</p>
+                                <p class='price'>$proPrice VND</p>
                             </div>
                             <form id='quan$productId'  class='quantitybox col-2 ' >
                                 <input type='hidden' name='productId' value='$productId'>
                                 <input type='number' name='quantity' value='$productQuan' onchange='updateCart($productId)' class='text-center'  onkeyup='return false'  min=1 oninput='check(this)' onClick='this.select();'>
                             </form>
                             <div class='total col-3'>
-                                $total.VND
+                                $tt VND
                             </div>
                             <div class='col-2'>
                             <form action='page/xulygiohang.php' method='POST' onsubmit='return delitem()'>
@@ -120,13 +125,13 @@
                                 <div class="list-group-item d-flex justify-content-between align-items-center px-0 bg-light " style="border-left: 0 ; border-right: 0;">
                                     <span>Tổng tiền</span>
                                     <p class="mb-0">
-                                        <?php echo $totalPrice ?> .VND
+                                        <?php echo $tt ?> VND
                                     </p>
                                 </div>
                                 <div class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3 bg-light">
                                     <span>Tổng thanh toán</span>
                                     <p class="mb-0">
-                                        <?php echo $totalPrice ?> .VND
+                                        <?php echo $tt ?> VND
                                     </p>
                                 </div>
                             </div>
