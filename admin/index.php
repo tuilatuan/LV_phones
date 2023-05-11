@@ -101,12 +101,12 @@ else if ($manageloggedin) {
                                 <span>Tài khoản</span>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="index.php?chon=t&id=7" class="sidebar-menu_link sidebar-7">
                                 <i class="sidebar-menu_icon fa-solid fa-gear"></i>
                                 <span>Cài đặt</span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="sidebar-logout">

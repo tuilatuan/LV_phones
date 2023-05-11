@@ -60,7 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = mysqli_query($con, $sql);
         $num = mysqli_fetch_assoc($result);
         if (password_verify($password, $num['password'])) {
-            $strbill = "INSERT INTO bill (accountID,address,totalProduct,totalPrice) VALUES ($userId,'$address',$totalQuan,$totalPrice)";
+            $fullname = $num['fullname'];
+            $strbill = "INSERT INTO bill (accountID,fullname,address,totalProduct,totalPrice) VALUES ($userId,'$fullname','$address',$totalQuan,$totalPrice)";
             $result = mysqli_query($con, $strbill);
             $billID = $con ->insert_id;
             if ($result) {

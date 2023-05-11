@@ -4,6 +4,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     $loggedin = true;
     $userId = $_SESSION['accountID'];
     $username = $_SESSION['username'];
+   
 } else {
     $loggedin = false;
     $userId = 0;

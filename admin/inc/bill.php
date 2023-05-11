@@ -1,20 +1,75 @@
 <main>
     <div class="table-warpper">
         <div class="table-title">
+        <?php
+                    $sort_str = "";
+                    if(!empty($_GET['field'] ) && !empty($_GET['sort'] )){
+                        $field = $_GET['field'];
+                        $sort = $_GET['sort'];
+                        $sort_str .= "ORDER BY `bill`.`$field` $sort ";
+                        
+                    }
+                    if (!empty($_POST)) {
+                        $_SESSION['billadm_search'] = $_POST;
+                        // var_dump($_SESSION['billadm_search']);exit();
+                    }
+                    if (!empty($_SESSION['billadm_search'])) {
+                        $where = "";
+                        // var_dump($_SESSION['billadm_search']);exit();
+                        foreach ($_SESSION['billadm_search'] as $type => $value) {
+                            if (!empty($value)) {
+                                switch ($type) {
+                                    case 'fullname':
+                                        $where .= (!empty($where)) ? " AND `$type` LIKE '%$value%'" : "`$type` LIKE '%$value%'";
+                                        break;
+                                    default:
+                                        $where .= (!empty($where)) ? " AND $type = $value" : "$type = $value";
+                                        break;
+                                }
+                            }
+                        
+                        // var_dump($_SESSION['billadm_search'] );exit();
+                        }
+                        extract($_SESSION['billadm_search']);
+                        // var_dump();exit();
+                        
+                    }
+                    if(!empty($where)){
+                        $str_where = "WHERE ".$where;
+                        // var_dump($str_where);exit();
+                    }
+                    if (!empty($where) && !empty($sort_str)) {
+                        $string = "SELECT * FROM `bill` ".$str_where .$sort_str;
+
+                       
+                    }else if(!empty($sort_str)){
+                        $string = "SELECT * FROM `bill` $sort_str ";
+
+                    }
+                    else if(!empty($where) ){
+                        $string = "SELECT * FROM `bill` $str_where ORDER BY `bill`.`billID` ASC ";
+                        // var_dump($string);exit();
+
+                    }
+                     else {
+                        $string = "SELECT * FROM `bill` ORDER BY `bill`.`billID` ASC ";
+                    }
+                    $query = mysqli_query($con, $string);
+                    ?>
             <div class="table-title-left">
                 <span>Hóa Đơn</span>
             </div>
-            <form action="?chon=t&id=4" method="POST" class="formsearch">
+            <form action="?chon=t&id=2" method="POST" class="formsearch">
                 <fieldset class="fm-gr">
                     <legend>Tìm kiếm sản phẩm</legend>
-                    <div class="box-inp">
+                    <div class="box-inp" style="flex-direction: column;">
                         <div class="box box-id">
-                            <label for="productID">ID:</label>
-                            <input class="inputsearch" type="text" name="productID" id="productID" value="<?= !empty($productID) ? $productID : "" ?>" placeholder="Nhập id sản phẩm">
+                            <label for="billID">ID:</label>
+                            <input class="inputsearch" type="text" name="billID" id="billID" value="<?= !empty($billID) ? $billID : "" ?>" placeholder="Nhập id hóa đơn">
                         </div>
                         <div class="box box-name">
-                            <label for="productName">Tên:</label>
-                            <input class="inputsearch" type="text" name="productName" id="productName" value="<?= !empty($productName) ? $productName : "" ?>" placeholder="Nhập tên sản phẩm">
+                            <label for="fullname">Tên:</label>
+                            <input class="inputsearch" type="text" name="fullname" id="fullname" value="<?= !empty($fullname) ? $fullname : "" ?>" placeholder="Nhập tên khách hàng">
                         </div>
                     </div>
                     <div class="gr-btn">
@@ -24,11 +79,11 @@
                 </fieldset>
             </form>
             <div class="sortpro">
-                        <label for="sortpro">Sắp xế theo giá: </label>
+                        <label for="sortpro">Sắp xếp theo tổng tiền: </label>
                         <select name="sortpro" id="sortpro" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-                            <option value="?chon=t&id=4"  <?php if(isset($_GET['sort'])&& $_GET['sort']== ''){?> selected <?php }?> >---</option>
-                            <option value="?chon=t&id=4&field=productPrice&sort=desc"  <?php if(isset($_GET['sort'])&& $_GET['sort']== 'desc'){?> selected <?php }?>>Giảm dần</option>
-                            <option value="?chon=t&id=4&field=productPrice&sort=asc" <?php if(isset($_GET['sort'])&& $_GET['sort']== 'asc'){?> selected <?php }?>  >Tăng dần</option>
+                            <option value="?chon=t&id=2"  <?php if(isset($_GET['sort'])&& $_GET['sort']== ''){?> selected <?php }?> >---</option>
+                            <option value="?chon=t&id=2&field=totalPrice&sort=desc"  <?php if(isset($_GET['sort'])&& $_GET['sort']== 'desc'){?> selected <?php }?>>Giảm dần</option>
+                            <option value="?chon=t&id=2&field=totalPrice&sort=asc" <?php if(isset($_GET['sort'])&& $_GET['sort']== 'asc'){?> selected <?php }?>  >Tăng dần</option>
                         </select>
                     </div>
             <div class="table-title-right">
@@ -53,7 +108,7 @@
             <thead class="table-thead">
                 <tr>
                     <th>ID HÓA ĐƠN </th>
-                    <th>ID KHÁCH HÀNG </th>
+                    <th>TÊN KHÁCH HÀNG </th>
                     <th>ĐỊA CHỈ </th>
                     <th>TONG SAN PHAM</th>
                     <th>TỔNG TIỀN</th>
@@ -64,11 +119,10 @@
             </thead>
             <?php
 
-            $string = "SELECT * FROM bill ";
-            $query = mysqli_query($con, $string);
             $count = 0;
             while ($row = mysqli_fetch_array($query)) {
                 $accountID = $row['accountID'];
+                $name= $row['fullname'];
                 $billID = $row['billID'];
                 $address = $row['address'];
                 $totalProduct = $row['totalProduct'];
@@ -79,7 +133,7 @@
                 echo " <tbody class='table-tbody'>
                         <tr>
                             <th>$billID</th>
-                            <th>$accountID</th>
+                            <th>$name</th>
                             <th>$address</th>
                             <th>$totalProduct</th>
                             <th>$totalPrice VND</th>
@@ -140,6 +194,12 @@
             });
 
         }
+        function clearI() {
+         var inp = document.querySelectorAll('.inputsearch');
+        inp.forEach(function(item){
+            item.value=''
+        })
+    }
     </script>
 
     <?php

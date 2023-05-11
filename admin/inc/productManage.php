@@ -128,7 +128,7 @@
                         </fieldset>
                     </form>
                     <div class="sortpro">
-                        <label for="sortpro">Sắp xế theo giá: </label>
+                        <label for="sortpro">Sắp xếp theo giá: </label>
                         <select name="sortpro" id="sortpro" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
                             <option value="?chon=t&id=4"  <?php if(isset($_GET['sort'])&& $_GET['sort']== ''){?> selected <?php }?> >---</option>
                             <option value="?chon=t&id=4&field=productPrice&sort=desc"  <?php if(isset($_GET['sort'])&& $_GET['sort']== 'desc'){?> selected <?php }?>>Giảm dần</option>

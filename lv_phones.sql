@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2023 at 06:15 PM
+-- Generation Time: May 11, 2023 at 08:45 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -44,9 +44,10 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`accountID`, `fullname`, `username`, `password`, `phone`, `role`, `email`, `address`, `reg_date`) VALUES
-(6, 'admin', 'admin', '$2y$10$dh5U.bBXbsPFJZpP.Y5B8eIW5J1qPEoqwfzXOJVqrWsKrp3RWJHAu', '0123456789', '1', 'admin@gmai.com', '', '2023-05-05 12:45:12'),
+(6, 'admin', 'admin', '$2y$10$dh5U.bBXbsPFJZpP.Y5B8eIW5J1qPEoqwfzXOJVqrWsKrp3RWJHAu', '0123456789 ', '1', 'admin@gmai.com', '', '2023-05-10 17:46:44'),
 (7, 'staff', 'staff', '$2y$10$vvYzC2BAGa9YnHk//7rz2O6vWVTVSReqbd/w5UMr8W0WH2vT0taJu', '0123456788', '2', 'staff@gmail.com', '', '2023-05-05 12:45:26'),
-(8, 'thanh tuan', 'tuan', '$2y$10$eZ95QwrYfO3z4lqknQGfQ.IURzfhRNc7g./L0UMhEtgAUOBCZqAtO', '0961312654 ', '0', 'tuan@gmail.com', '', '2023-05-05 14:08:16');
+(8, 'thanh tuan', 'tuan', '$2y$10$QTvYDxHHRamO32Ggcgku3.SkRARks8SYMWRURITBa4hjkA9xCgub2', '0961312654 ', '0', 'tuan@gmail.com', '', '2023-05-07 17:34:51'),
+(10, 'van luong', 'luong', '$2y$10$BmbZTsslgkBnGQD8H0ySA.bQc6A4.js0nozdcNyrn.2J2fB3Nm3Me', '0961290666', '0', 'luong@gmail.com', '', '2023-05-11 05:16:41');
 
 -- --------------------------------------------------------
 
@@ -57,9 +58,10 @@ INSERT INTO `account` (`accountID`, `fullname`, `username`, `password`, `phone`,
 CREATE TABLE `bill` (
   `billID` int(11) NOT NULL,
   `accountID` int(11) NOT NULL,
-  `address` varchar(255) CHARACTER SET armscii8 COLLATE armscii8_general_ci NOT NULL,
+  `fullname` varchar(50) NOT NULL,
+  `address` varchar(255) NOT NULL,
   `totalProduct` int(20) NOT NULL,
-  `totalPrice` varchar(50) NOT NULL,
+  `totalPrice` int(50) NOT NULL,
   `billDate` date NOT NULL DEFAULT current_timestamp(),
   `billStatus` enum('0','1','2','3','4','5','6') NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -68,9 +70,15 @@ CREATE TABLE `bill` (
 -- Dumping data for table `bill`
 --
 
-INSERT INTO `bill` (`billID`, `accountID`, `address`, `totalProduct`, `totalPrice`, `billDate`, `billStatus`) VALUES
-(16, 8, '7280 Tran Xuan Soan Q7', 3, '40800000', '2023-05-03', '0'),
-(17, 8, '7280 Tran Xuan Soan Q7', 2, '29950000', '2023-05-04', '0');
+INSERT INTO `bill` (`billID`, `accountID`, `fullname`, `address`, `totalProduct`, `totalPrice`, `billDate`, `billStatus`) VALUES
+(16, 8, 'thanh tuan', '7280 Tran Xuan Soan Q7', 3, 40800000, '2023-05-03', '4'),
+(17, 8, 'thanh tuan', '7280 Tran Xuan Soan Q7', 2, 29950000, '2023-05-04', '6'),
+(45, 8, 'thanh tuan', '7280 Tran Xuan Soan Q7', 3, 45800000, '2023-05-08', '0'),
+(46, 8, 'thanh tuan', '62 lam van ben Q7 HCM', 10, 163700000, '2023-05-10', '4'),
+(47, 8, 'thanh tuan', '62 lam van ben Q7 HCM', 10, 163700000, '2023-05-10', '0'),
+(48, 8, 'thanh tuan', '62 lam van ben Q7 HCM', 1, 27500000, '2023-05-11', '0'),
+(49, 10, 'van luong', '721 Trần Xuân Soạn Q7', 3, 38700000, '2023-05-11', '0'),
+(50, 10, 'van luong', '721 Trần Xuân Soạn Q7', 3, 38700000, '2023-05-11', '0');
 
 -- --------------------------------------------------------
 
@@ -94,7 +102,16 @@ INSERT INTO `billdetails` (`productID`, `productQuantity`, `billDetailsID`, `bil
 (7, 1, 21, 16),
 (6, 1, 22, 16),
 (1, 1, 23, 17),
-(3, 1, 24, 17);
+(3, 1, 24, 17),
+(1, 1, 27, 45),
+(7, 1, 28, 45),
+(11, 1, 29, 45),
+(1, 3, 30, 46),
+(7, 4, 31, 46),
+(4, 3, 32, 46),
+(1, 1, 33, 48),
+(8, 2, 34, 50),
+(1, 1, 35, 50);
 
 -- --------------------------------------------------------
 
@@ -107,17 +124,10 @@ CREATE TABLE `cart` (
   `productID` int(11) NOT NULL,
   `productName` varchar(50) NOT NULL,
   `productImage` varchar(50) NOT NULL,
-  `productPrice` varchar(50) NOT NULL,
+  `productPrice` int(50) NOT NULL,
   `cartQuantity` int(11) NOT NULL,
   `accountID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`cartID`, `productID`, `productName`, `productImage`, `productPrice`, `cartQuantity`, `accountID`) VALUES
-(45, 1, 'Iphone 12 Pro', 'phone-1.jpg', '27500000', 1, 8);
 
 -- --------------------------------------------------------
 
@@ -173,13 +183,6 @@ CREATE TABLE `feedback` (
   `time` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `feedback`
---
-
-INSERT INTO `feedback` (`feedbackID`, `accountID`, `content`, `email`, `answer`, `time`) VALUES
-(1, 8, 'tuialatuan', 'tuan@gmail.com', '', '2023-05-03');
-
 -- --------------------------------------------------------
 
 --
@@ -210,7 +213,7 @@ CREATE TABLE `product` (
   `productID` int(11) UNSIGNED NOT NULL,
   `categoryID` int(11) NOT NULL,
   `productName` varchar(255) NOT NULL,
-  `productPrice` varchar(100) NOT NULL,
+  `productPrice` int(100) NOT NULL,
   `productQuantity` int(11) NOT NULL,
   `productImage` varchar(50) NOT NULL,
   `productDetail` longtext NOT NULL
@@ -221,41 +224,42 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`productID`, `categoryID`, `productName`, `productPrice`, `productQuantity`, `productImage`, `productDetail`) VALUES
-(1, 1, 'Iphone 12 Pro', '27500000', 5, 'phone-1.jpg', 'Iphone'),
-(2, 5, 'Realme 9', '11000000', 0, 'phone-2.jpg', 'Realme'),
-(3, 5, 'Realme C35', '2450000', 7, 'phone-3.jpg', 'Realme'),
-(4, 2, 'Samsung galaxy S22', '24000000', 5, 'phone-4.jpg', 'Samsung'),
-(5, 2, 'Samsung galaxy Z Flip 3', '23000000', 3, 'phone-5.jpg', 'Samsung'),
-(6, 2, 'Samsung galaxy note 8', '11000000', 4, 'phone-6.jpg', 'Samsung'),
-(7, 4, 'Xiaomi 11 Lite', '2300000', 5, 'phone-7.jpg', 'Xiaomi'),
-(8, 4, 'Xiaomi 12 Pro', '5600000', 5, 'phone-8.jpg', 'Xiaomi'),
-(9, 4, 'Xiaomi 12', '7800000', 4, 'phone-9.jpg', 'Xiaomi'),
-(10, 4, 'Xiaomi 11t', '5600000', 5, 'phone-10.jpg', 'Xiaomi'),
-(11, 1, 'Iphone 11', '16000000', 3, 'phone-11.jpg', 'Iphone'),
-(12, 1, 'Iphone XR', '14500000', 3, 'phone-12.jpg', 'Iphone'),
-(13, 1, 'Iphone SE', '9000000', 3, 'phone-13.jpg', 'Iphone'),
-(14, 1, 'iphone 6', '3000000', 4, 'phone-14.jpg', 'Iphone'),
-(15, 1, 'Iphone 13 Mini', '16500000', 3, 'phone-15.jpg', 'Iphone'),
-(16, 1, 'Iphone 12 Pro', '23000000', 4, 'phone-16.jpg', 'Iphone'),
-(17, 1, 'Iphone X', '7500000', 5, 'phone-17.jpg', 'Iphone'),
-(18, 6, 'Tai nghe ', '540000', 45, 'phone-18.jpg', 'phụ kiện'),
-(19, 3, 'Oppo A55', '4400000', 30, 'phone-19.jpg', 'Oppo'),
-(20, 3, 'Oppo Reno 7', '15500000', 4, 'phone-20.jpg', 'Oppo'),
-(21, 1, 'Iphone XS Gold', '17000000', 45, 'phone-21.jpg', 'Iphone'),
-(22, 2, 'Samsung Galaxy Z Flip4', '17900000', 10, 'phone-22.jpg', 'Samsung'),
-(23, 3, 'OPPO Find N2 Flip', '19900000', 3, 'phone-23.jpg', 'Oppo'),
-(24, 1, 'Iphone 13 Pro Max', '33300000', 4, 'phone-24.jpg', 'Iphone'),
-(25, 2, 'Samsung Galaxy A73', '22200000', 2, 'phone-25.jpg', 'Samsung'),
-(26, 2, 'Samsung Galaxy A52s', '2350000', 1, 'phone-26.jpg', 'Samsung'),
-(28, 4, 'Xiaomi Redmi K50', '15600000', 3, 'phone-28.jpg', 'Xiaomi'),
-(29, 4, 'Xiaomi Redmi 10s', '147000000', 4, 'phone-29.jpg', 'Xiaomi'),
-(30, 4, 'Realme C21', '1300000', 5, 'phone-30.jpg', 'Realme'),
-(31, 1, 'Iphone 7 Plus', '15500000', 5, 'phone-31.jpg', 'Iphone'),
-(32, 2, 'Samsung Galaxy A03s', '22000000', 3, 'phone-32.jpg', 'Samsung'),
-(33, 3, 'Oppo A16k', '1900000', 1, 'phone-33.jpg', 'Oppo'),
-(34, 5, 'Realme C11', '1500000', 5, 'phone-34.jpg', 'Realme'),
-(35, 5, 'Realme 8 Pro', '1450000', 3, 'phone-35.jpg', 'Realme'),
-(36, 6, 'Sạc dự phòng Polymer 10000mah', '350000', 3, 'phone-36.jpg', 'Phụ kiện');
+(1, 1, 'Iphone 12 Pro', 27500000, 4, 'phone-1.jpg', 'Iphone'),
+(2, 5, 'Realme 9', 11000000, 0, 'phone-2.jpg', 'Realme'),
+(3, 5, 'Realme C35', 2450000, 7, 'phone-3.jpg', 'Realme'),
+(4, 2, 'Samsung galaxy S22', 24000000, 2, 'phone-4.jpg', 'Samsung'),
+(5, 2, 'Samsung galaxy Z Flip 3', 23000000, 3, 'phone-5.jpg', 'Samsung'),
+(6, 2, 'Samsung galaxy note 8', 11000000, 4, 'phone-6.jpg', 'Samsung'),
+(7, 4, 'Xiaomi 11 Lite', 2300000, 0, 'phone-7.jpg', 'Xiaomi'),
+(8, 4, 'Xiaomi 12 Pro', 5600000, 3, 'phone-8.jpg', 'Xiaomi'),
+(9, 4, 'Xiaomi 12', 7800000, 4, 'phone-9.jpg', 'Xiaomi'),
+(10, 4, 'Xiaomi 11t', 5600000, 5, 'phone-10.jpg', 'Xiaomi'),
+(11, 1, 'Iphone 11', 16000000, 2, 'phone-11.jpg', 'Iphone'),
+(12, 1, 'Iphone XR', 14500000, 3, 'phone-12.jpg', 'Iphone'),
+(13, 1, 'Iphone SE', 9000000, 3, 'phone-13.jpg', 'Iphone'),
+(14, 1, 'iphone 6', 3000000, 4, 'phone-14.jpg', 'Iphone'),
+(15, 1, 'Iphone 13 Mini', 16500000, 3, 'phone-15.jpg', 'Iphone'),
+(16, 1, 'Iphone 12 Pro', 23000000, 4, 'phone-16.jpg', 'Iphone'),
+(17, 1, 'Iphone X', 7500000, 5, 'phone-17.jpg', 'Iphone'),
+(18, 6, 'Tai nghe ', 540000, 45, 'phone-18.jpg', 'phụ kiện'),
+(19, 3, 'Oppo A55', 4400000, 30, 'phone-19.jpg', 'Oppo'),
+(20, 3, 'Oppo Reno 7', 15500000, 4, 'phone-20.jpg', 'Oppo'),
+(21, 1, 'Iphone XS Gold', 17000000, 45, 'phone-21.jpg', 'Iphone'),
+(22, 2, 'Samsung Galaxy Z Flip4', 17900000, 10, 'phone-22.jpg', 'Samsung'),
+(23, 3, 'OPPO Find N2 Flip', 19900000, 3, 'phone-23.jpg', 'Oppo'),
+(24, 1, 'Iphone 13 Pro Max', 33300000, 4, 'phone-24.jpg', 'Iphone'),
+(25, 2, 'Samsung Galaxy A73', 22200000, 2, 'phone-25.jpg', 'Samsung'),
+(26, 2, 'Samsung Galaxy A52s ádafsdfasdf', 2350000, 1, 'phone-26.jpg', 'Samsung'),
+(28, 4, 'Xiaomi Redmi K50', 15600000, 3, 'phone-28.jpg', 'Xiaomi'),
+(29, 4, 'Xiaomi Redmi 10s', 4700000, 4, 'phone-29.jpg', 'Xiaomi'),
+(30, 4, 'Realme C21', 1300000, 5, 'phone-30.jpg', 'Realme'),
+(31, 1, 'Iphone 7 Plus', 15500000, 5, 'phone-31.jpg', 'Iphone'),
+(32, 2, 'Samsung Galaxy A03s', 22000000, 3, 'phone-32.jpg', 'Samsung'),
+(33, 3, 'Oppo A16k', 1900000, 1, 'phone-33.jpg', 'Oppo'),
+(34, 5, 'Realme C11', 1500000, 5, 'phone-34.jpg', 'Realme'),
+(35, 5, 'Realme 8 Pro', 1450000, 3, 'phone-35.jpg', 'Realme'),
+(36, 6, 'Sạc dự phòng Polymer 10000mah', 350000, 3, 'phone-36.jpg', 'Phụ kiện'),
+(166, 1, 'Iphone 14', 60, 4, 'phone-166.jpg', 'iphone');
 
 -- --------------------------------------------------------
 
@@ -382,25 +386,25 @@ ALTER TABLE `slideshow`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `accountID` int(30) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `accountID` int(30) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `billID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `billID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `billdetails`
 --
 ALTER TABLE `billdetails`
-  MODIFY `billDetailsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `billDetailsID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `cartID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -418,7 +422,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `feedbackID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `feedbackID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `phuongthuc_tbl`
@@ -430,7 +434,7 @@ ALTER TABLE `phuongthuc_tbl`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+  MODIFY `productID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
 -- AUTO_INCREMENT for table `product_sample`

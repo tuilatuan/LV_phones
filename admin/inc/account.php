@@ -101,25 +101,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <div class="text-left display" style="border-bottom: 2px solid #dee2e6;">
-                            <div class="form-group ">
-                                <form action="partials/_userManage.php" method="post" enctype="multipart/form-data">
-                                    <b><label for="image">Profile Picture</label></b>
-                                    <input type="file" name="userimage" id="userimage" accept=".jpg" class="form-control" required style="border:none;">
-                                    <small id="Info" class="form-text text-muted mx-3">Chọn file .jpg.</small>
-                                    <input type="hidden" id="userId" name="userId" value="1">
-                                    <button type="submit" class="btn btn-success" name="updateProfilePhoto">Cập
-                                        nhật</button>
-                                </form>
-                            </div>
-                            <div class="form-group">
-                                <img class="img-style" src="/assets/img/img1.jpg" alt="Profile Photo" onError="this.src ='/OnlinePizzaDelivery/img/profilePic.jpg'">
-                                <input type="hidden" id="userId" name="userId" value="1">
-                                <button type="submit" class="btn btn-success" name="removeProfilePhoto">Xóa
-                                    ảnh</button>
-                                </form>
-                            </div>
-                        </div>
+                       
                         <form action="pages/_accountHandle.php" method="POST">
                             <div class="form-user">
 
